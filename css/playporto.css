@@ -1,0 +1,846 @@
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #0d2252;
+    margin: auto;
+    padding: 0;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 15px;
+    background-color: #091538;
+    color: white;
+    border-bottom: 2px solid #a38808;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-body img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.modal-description {
+    margin-top: 20px;
+    color: #cccccc;
+    text-align: left;
+    width: 100%;
+}
+
+.close {
+    color: #a38808;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Video thumbnail styling */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail-container:hover .video-thumbnail {
+    transform: scale(1.02);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: rgba(163, 136, 8, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    margin-left: 8px;
+}
+
+.video-thumbnail-container:hover .play-button {
+    background-color: rgba(163, 136, 8, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.watch-text {
+    text-align: center;
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.visit-website-btn {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 25px;
+    background-color: #a38808;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.visit-website-btn:hover {
+    background-color: #c4a40a;
+    transform: translateY(-2px);
+}
+
+.website-thumbnail {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Container untuk video YouTube embedded */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 56.25%; /* Rasio Aspek 16:9 */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling untuk HTML5 Video Player */
+.modal-video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom controls styling */
+video::-webkit-media-controls {
+    background-color: rgba(9, 21, 56, 0.7);
+    border-radius: 0 0 8px 8px;
+}
+
+video::-webkit-media-controls-panel {
+    padding: 5px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #0d2252;
+    margin: auto;
+    padding: 0;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 15px;
+    background-color: #091538;
+    color: white;
+    border-bottom: 2px solid #a38808;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-body img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.modal-description {
+    margin-top: 20px;
+    color: #cccccc;
+    text-align: left;
+    width: 100%;
+}
+
+.close {
+    color: #a38808;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Video thumbnail styling */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail-container:hover .video-thumbnail {
+    transform: scale(1.02);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: rgba(163, 136, 8, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    margin-left: 8px;
+}
+
+.video-thumbnail-container:hover .play-button {
+    background-color: rgba(163, 136, 8, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.watch-text {
+    text-align: center;
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.visit-website-btn {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 25px;
+    background-color: #a38808;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.visit-website-btn:hover {
+    background-color: #c4a40a;
+    transform: translateY(-2px);
+}
+
+.website-thumbnail {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Container untuk video YouTube embedded */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 56.25%; /* Rasio Aspek 16:9 */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling untuk HTML5 Video Player */
+.modal-video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom controls styling */
+video::-webkit-media-controls {
+    background-color: rgba(9, 21, 56, 0.7);
+    border-radius: 0 0 8px 8px;
+}
+
+video::-webkit-media-controls-panel {
+    padding: 5px;
+}
+
+/* Tambahkan animasi untuk modal */
+@keyframes modalOpen {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+.modal.open {
+    display: flex;
+    animation: modalOpen 0.4s;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+    }
+    
+    .video-container {
+        padding-top: 75%; /* Sedikit lebih tinggi di mobile */
+    }
+    
+    .play-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .play-icon {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid white;
+        margin-left: 5px;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #0d2252;
+    margin: auto;
+    padding: 0;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 15px;
+    background-color: #091538;
+    color: white;
+    border-bottom: 2px solid #a38808;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-body img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.modal-description {
+    margin-top: 20px;
+    color: #cccccc;
+    text-align: left;
+    width: 100%;
+}
+
+.close {
+    color: #a38808;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Video thumbnail styling */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail-container:hover .video-thumbnail {
+    transform: scale(1.02);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: rgba(163, 136, 8, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    margin-left: 8px;
+}
+
+.video-thumbnail-container:hover .play-button {
+    background-color: rgba(163, 136, 8, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.watch-text {
+    text-align: center;
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Container untuk video YouTube embedded */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 56.25%; /* Rasio Aspek 16:9 */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling untuk Instagram embed */
+.instagram-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.instagram-container iframe {
+    width: 100%;
+    max-width: 500px;
+    border: none;
+}
+
+/* Styling untuk link Instagram alternatif */
+.instagram-link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.instagram-preview {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.instagram-link-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: #C13584;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.instagram-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk HTML5 Video Player */
+.modal-video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom controls styling */
+video::-webkit-media-controls {
+    background-color: rgba(9, 21, 56, 0.7);
+    border-radius: 0 0 8px 8px;
+}
+
+video::-webkit-media-controls-panel {
+    padding: 5px;
+}
+
+/* Styling untuk website preview */
+.website-thumbnail {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.visit-website-btn {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 25px;
+    background-color: #a38808;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.visit-website-btn:hover {
+    background-color: #c4a40a;
+    transform: translateY(-2px);
+}
+
+/* Tambahkan animasi untuk modal */
+@keyframes modalOpen {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+.modal.open {
+    display: flex;
+    animation: modalOpen 0.4s;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+    }
+    
+    .video-container {
+        padding-top: 75%; /* Sedikit lebih tinggi di mobile */
+    }
+    
+    .play-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .play-icon {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid white;
+        margin-left: 5px;
+    }
+    
+    .instagram-container {
+        max-width: 100%;
+    }
+}
+
+/* Tambahkan CSS ini ke file playporto.css Anda */
+
+/* Perbaikan untuk container video YouTube */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    background-color: #000; /* Latar belakang hitam untuk video yang sedang dimuat */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling untuk pesan fallback video */
+.video-fallback {
+    text-align: center;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: rgba(163, 136, 8, 0.2);
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.video-fallback a {
+    color: #a38808;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.video-fallback a:hover {
+    color: #c4a40a;
+}
+
+/* Perbaikan untuk Instagram embed */
+.instagram-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 500px; /* Minimum height untuk container */
+}
+
+.instagram-container iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Link fallback untuk Instagram */
+.instagram-fallback-link {
+    display: block;
+    text-align: center;
+    margin: 15px auto;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    max-width: 200px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.instagram-fallback-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Perbaikan untuk video lokal */
+.modal-video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #000; /* Latar belakang hitam */
+    display: block;
+    margin: 0 auto;
+    max-height: 60vh;
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+    .video-container {
+        padding-top: 75%; /* Slightly taller aspect ratio for mobile */
+    }
+    
+    .instagram-container,
+    .instagram-container iframe {
+        max-width: 100%;
+        min-height: 450px;
+    }
+    
+    .modal-video {
+        max-height: 50vh;
+    }
+}
+
+/* Pastikan modal body dapat discroll jika konten panjang */
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #a38808 #091538;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #091538;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #a38808;
+    border-radius: 10px;
+    border: 2px solid #091538;
+}

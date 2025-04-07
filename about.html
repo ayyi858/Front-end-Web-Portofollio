@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/about.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-</head>
+    <!-- Library CSS untuk animasi -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<head>
 <body>
     <!-- Header Section -->
     <header>
@@ -28,21 +30,21 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>About Me</h1>
+        <h1 data-aos="fade-up">About Me</h1>
     </section>
 
     <!-- About Me Section -->
     <section class="about-section">
         <div class="container">
-            <h2 class="section-title">-About Me</h2>
+            <h2 class="section-title" data-aos="fade-up">-About Me</h2>
             
             <div class="about-content">
-                <div class="profile-image">
+                <div class="profile-image" data-aos="fade-right" data-aos-delay="200">
                     <img src="img/profil.png" alt="Ahmad Syarif Hidayatullah">
                 </div>
-                <div class="about-text">
-                    <h3>Who is Ahmad Syarif Hidayatullah ?</h3>
-                    <p>Saya lahir di Polewali Mandar, Sulawesi Barat, dan besar 
+                <div class="about-text" data-aos="fade-left" data-aos-delay="400">
+                    <h3 class="typing-title"></h3>
+                    <p data-aos="fade-up" data-aos-delay="600">Saya lahir di Polewali Mandar, Sulawesi Barat, dan besar 
                         di± 250 Km sebelah Utara dari Kota Makassar, tepatnya di 
                         sebuah desa di Kabupaten Polewali Mandar. Sebagai generasi 
                         milenial, saya tumbuh dalam dua dunia, yaitu dunia tradisional 
@@ -50,7 +52,7 @@
                         keduanya dan bagaimana mereka saling mempengaruhi dalam 
                         kehidupan sehari-hari.
                     </p>
-                    <a href="#edu-work-section" class="btn">Pendidikan <span>→</span></a>
+                    <a href="#edu-work-section" class="btn" data-aos="zoom-in" data-aos-delay="800">Pendidikan <span>→</span></a>
                     
                 </div>
             </div>
@@ -58,14 +60,14 @@
     </section>
 
     <!-- Education & Work Section -->
-    <section class="edu-work-section" id ="edu-work-section">
+    <section class="edu-work-section" id="edu-work-section">
         <div class="container">
-            <h2 class="section-title">-Education & Work</h2>
+            <h2 class="section-title" data-aos="fade-up">-Education & Work</h2>
             
             <div class="journey-header">
-                <h3>My Academic And<br>Work Experience <span>Journey</span></h3>
+                <h3 data-aos="fade-up">My Academic And<br>Work Experience <span>Journey</span></h3>
                 
-                <div class="quote">
+                <div class="quote" data-aos="fade-up" data-aos-delay="200">
                     <p>"Kita semua sepakat bahwa <span class="highlight">Pendidikan</span> merupakan faktor 
                         utama dalam mewujudkan perubahan. Melalui pendidikan, 
                         kita dapat mencapai harapan dan cita-cita bangsa, 
@@ -74,10 +76,10 @@
             </div>
             
             <!-- Education Section -->
-            <h4 class="subsection-title">-Education</h4>
+            <h4 class="subsection-title" data-aos="fade-right">-Education</h4>
             
             <div class="education-grid">
-                <div class="edu-card">
+                <div class="edu-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="school-logo">
                         <img src="img/edu/logo mtsm.png" alt="MTSN I Pati">
                     </div>
@@ -87,7 +89,7 @@
                         dengan Rumah, sekitar 1 km dari rumah. </p>
                 </div>
                 
-                <div class="edu-card">
+                <div class="edu-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="school-logo">
                         <img src="img/edu/man.png" alt="UMM">
                     </div>
@@ -97,7 +99,7 @@
                         yang dekat dengan Rumah, sekitar 1 km dari rumah.</p>
                 </div>
                 
-                <div class="edu-card">
+                <div class="edu-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="school-logo">
                         <img src="img/edu/unm.png" alt="Man 1 Magetan">
                     </div>
@@ -109,13 +111,13 @@
             </div>
             
             <!-- Work Experience Section -->
-            <h4 class="subsection-title1">-Work experience</h4>
+            <h4 class="subsection-title1" data-aos="fade-left">-Work experience</h4>
             
             <div class="timeline">
                 <!-- Timeline Items -->
                 <div class="timeline-item right">
                     <div class="dot"></div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-left">
                         <h5>Freelance Industri Kreatif <span class="year">Tahun 2019-Sekarang</span></h5>
                         <p>Sebagai tenaga kreatif Independen di Ayyi Productions dengan 
                             fokus (Designer & Editor )pada pengembangan konten visual 
@@ -129,7 +131,7 @@
                 
                 <div class="timeline-item left">
                     <div class="dot"></div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-right">
                         <h5>Designer BRAND <span class="year">Tahun 2020-2023</span></h5>
                         <p>Merancang konsep visual 
                         yang inovatif untuk memperkuat identitas brand. Tugas saya meliputi pembuatan 
@@ -143,7 +145,7 @@
                 
                 <div class="timeline-item right">
                     <div class="dot"></div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-left">
                         <h5>Web Developer <span class="year">Tahun 2023-2024</span></h5>
                         <p>Sebagai developer di UMKM Kedai Mampir, saya bertanggung jawab dalam pengembangan 
                             dan pemeliharaan website kedai. Fokus saya adalah menciptakan tampilan yang menarik 
@@ -157,7 +159,7 @@
                 
                 <div class="timeline-item left">
                     <div class="dot"></div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-right">
                         <h5>Web Developer <span class="year">Tahun 2020-Sekarang</span></h5>
                         <p>Merancang, mengembangkan, dan memelihara situs. Fokus saya adalah memastikan 
                             pengalaman pengguna yang optimal, kecepatan akses yang tinggi, serta integrasi yang mulus 
@@ -170,7 +172,7 @@
                 
                 <div class="timeline-item right">
                     <div class="dot"></div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-left">
                         <h5>Video editor & Designer <span class="year">Tahun 2020-Sekarang</span></h5>
                         <p>Menyuntingan video untuk berbagai keperluan organisasi. Tugas saya mencakup mengolah 
                             materi visual dan audio untuk menghasilkan video yang informatif, menarik, dan sesuai 
@@ -189,11 +191,11 @@
     <section class="skills-section">
         <div class="container">
             <div class="skill-header">
-                <h3>My Skill</h3>
+                <h3 data-aos="zoom-in">My Skill</h3>
             </div>
             
             <!-- Design Graphics Skills -->
-            <div class="skill-category">
+            <div class="skill-category" data-aos="fade-up">
                 <div class="skill-icons">
                     <div class="skill-icon"><img src="img/skill/design/ilust.png" alt="Adobe Illustrator"></div>
                     <div class="skill-icon"><img src="img/skill/design/ps.png" alt="Adobe Photoshop"></div>
@@ -207,7 +209,7 @@
             </div>
             
             <!-- Video Editor Skills -->
-            <div class="skill-category">
+            <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
                 <div class="skill-icons">
                     <div class="skill-icon"><img src="img/skill/veditor/premier.png" alt="Adobe Premiere"></div>
                     <div class="skill-icon"><img src="img/skill/veditor/ae.png" alt="Adobe After Effects"></div>
@@ -220,7 +222,7 @@
             </div>
             
             <!-- Web Developer Skills -->
-            <div class="skill-category">
+            <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
                 <div class="skill-icons">
                     <div class="skill-icon"><img src="img/skill/webdev/python.png" alt="Python"></div>
                     <div class="skill-icon"><img src="img/skill/webdev/vsc.png" alt="React"></div>
@@ -242,5 +244,75 @@
             <p>&copy; 2025 Ahmad Syarif Hidayatullah. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Library Scripts untuk animasi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom Script untuk animasi -->
+    <script>
+        // Inisialisasi Library AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+
+        // Animasi typed.js untuk judul
+        document.addEventListener('DOMContentLoaded', function() {
+            var typed = new Typed('.typing-title', {
+                strings: ["Who is Ahmad Syarif Hidayatullah ?", "Siapakah saya?"],
+                typeSpeed: 80,
+                backSpeed: 40,
+                loop: true,
+                backDelay: 3000
+            });
+
+            // Animasi smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animasi untuk skill icons
+            const skillIcons = document.querySelectorAll('.skill-icon');
+            skillIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.1)';
+                    this.style.transition = 'transform 0.3s ease';
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                });
+
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Animasi untuk timeline dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach(dot => {
+                setInterval(() => {
+                    dot.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        dot.style.transform = 'scale(1)';
+                    }, 500);
+                }, 1500);
+            });
+
+            // Animasi untuk foto profil
+            const profileImage = document.querySelector('.profile-image img');
+            setInterval(() => {
+                profileImage.style.borderColor = '#f5d147';
+                setTimeout(() => {
+                    profileImage.style.borderColor = '#a38808';
+                }, 1500);
+            }, 3000);
+        });
+    </script>
 </body>
 </html>

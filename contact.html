@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NY Productions</title>
+    <link rel="stylesheet" href="css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Library CSS untuk animasi -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section dengan navbar yang sama dengan about -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logoku.png" alt="Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="porto.html">Portfolio</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section seperti about -->
+    <section class="hero">
+        <h1 data-aos="fade-up">Contact</h1>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-heading" data-aos="fade-up">
+                <h2><span class="gold-text">Contact</span> Me</h2>
+            </div>
+
+            <div class="github-section">
+                <h3 data-aos="fade-right">My recents Github</h3>
+                <div class="github-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="github-profile">
+                        <img src="img/profil.png" alt="GitHub Profile" class="profile-img">
+                        <div class="profile-info">
+                            <p>Coding with</p>
+                            <p class="username">ayyi858</p>
+                            <p>I</p>
+                            <p>memb online</p>
+                            <div class="status-icons">
+                                <span class="status-icon"></span>
+                                <span class="status-icon"></span>
+                                <span class="status-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="github-contributions">
+                        <div class="contribution-grid">
+                            <div class="months">
+                                <span>Mar</span>
+                                <span>Apr</span>
+                                <span>May</span>
+                                <span>Jun</span>
+                                <span>Jul</span>
+                                <span>Aug</span>
+                                <span>Sep</span>
+                                <span>Oct</span>
+                                <span>Nov</span>
+                                <span>Dec</span>
+                                <span>Jan</span>
+                                <span>Feb</span>
+                            </div>
+                            <div class="days">
+                                <span>Tue</span>
+                                <span>Thu</span>
+                                <span>Sat</span>
+                            </div>
+                            <div class="grid-container">
+                                <!-- GitHub contribution grid cells -->
+                                <table class="contribution-table">
+                                    <tbody>
+                                        <!-- 3 rows for Tue, Thu, Sat -->
+                                        <tr class="contribution-row"></tr>
+                                        <tr class="contribution-row"></tr>
+                                        <tr class="contribution-row"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="contribution-info">
+                                <span>989 contributions in the last half year</span>
+                                <div class="contribution-scale">
+                                    <span>Less</span>
+                                    <div class="scale-boxes">
+                                        <div class="scale-box level-1"></div>
+                                        <div class="scale-box level-2"></div>
+                                        <div class="scale-box level-3"></div>
+                                        <div class="scale-box level-4"></div>
+                                    </div>
+                                    <span>More</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-section" data-aos="fade-up" data-aos-delay="400">
+                <h2>Contact</h2>
+                <!-- Form dengan FormSubmit yang mengirim ke Gmail -->
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/boulukapiang858@gmail.com" method="POST">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                        <input type="email" id="email" name="email" placeholder="Your email" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
+                        <input type="text" id="subject" name="_subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
+                        <textarea id="message" name="message" rows="4" placeholder="Your message" required></textarea>
+                    </div>
+                    <!-- Anti-spam field -->
+                    <input type="text" name="_honey" style="display:none">
+                    <!-- Disable captcha -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Redirect setelah submit -->
+                    <input type="hidden" name="_next" value="https://thanksbackend.vercel.app/thanks.html">
+                    <!-- Template email -->
+                    <input type="hidden" name="_template" value="table">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="500">
+                        <button type="submit" class="send-button">
+                            <i class="fas fa-envelope"></i> Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Social Media Section - Persis seperti gambar -->
+            <div class="social-section">
+                <div class="social-container">
+                    <div class="social-column">
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/ayyi858" class="social-icon github" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <div class="social-column">
+                        <h3>Social Media</h3>
+                        <div class="social-icons">
+                            <a href="https://instagram.com/yourusername" class="social-icon" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/yourusername" class="social-icon" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://wa.me/yourphonenumber" class="social-icon" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://behance.net/yourusername" class="social-icon" target="_blank">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ahmad Syarif Hidayatullah. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Library Scripts untuk animasi -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Inisialisasi Library AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate GitHub contribution grid
+            const tableRows = document.querySelectorAll('.contribution-row');
+            
+            // Generate cells for each row
+            tableRows.forEach(row => {
+                // Create 52 weeks (columns) of contribution cells
+                for (let i = 0; i < 52; i++) {
+                    const cell = document.createElement('td');
+                    
+                    // Random level (for demonstration)
+                    const level = Math.floor(Math.random() * 5); // 0-4
+                    
+                    if (level === 1) {
+                        cell.classList.add('level-1');
+                    } else if (level === 2) {
+                        cell.classList.add('level-2');
+                    } else if (level === 3) {
+                        cell.classList.add('level-3');
+                    } else if (level === 4) {
+                        cell.classList.add('level-4');
+                    }
+                    
+                    row.appendChild(cell);
+                }
+            });
+            
+            // Animasi untuk form dan tombol
+            const sendButton = document.querySelector('.send-button');
+            if (sendButton) {
+                sendButton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                sendButton.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+            
+            // Animasi untuk GitHub card
+            const githubCard = document.querySelector('.github-card');
+            if (githubCard) {
+                githubCard.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                });
+                
+                githubCard.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                });
+            }
+            
+            // Animasi border pada profil GitHub
+            const profileImage = document.querySelector('.profile-img');
+            if (profileImage) {
+                setInterval(() => {
+                    profileImage.style.borderColor = '#f5d147';
+                    setTimeout(() => {
+                        profileImage.style.borderColor = '#a38808';
+                    }, 1500);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
