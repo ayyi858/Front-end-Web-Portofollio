@@ -7,10 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Typed.js dari CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg width="80" height="80" viewBox="0 0 50 50">
+                <circle class="circle" cx="25" cy="25" r="20" fill="none" stroke-width="3" stroke="#c1a71a"/>
+            </svg>
+            <span class="loading-text">SABAR</span>
+        </div>
+    </div>
+
     <nav>
         <div class="logo">
             <img src="img/logorev.png" alt="AY Productions Logo">
@@ -18,27 +34,31 @@
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About Me</a></li>
-            <li><a href="porto.html">Portofolio</a></li>
+            <li><a href="porto.html">Portfolio</a></li>
             <li><a href="contact.html" class="contact-btn">Contact Me</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-text">
-            <div class="hello-box">
+            <div class="hello-box" data-aos="fade-right" data-aos-delay="300">
                 Hello !
+                <div class="corner-tl"></div>
+                <div class="corner-tr"></div>
                 <div class="corner-bl"></div>
                 <div class="corner-br"></div>
             </div>
-            <h1 class="name">I'm <span>Ahmad Syarif Hidayatullah</span>,</h1>
-            <h2 class="title">Designer, Video editor & <br>Web Developer</h2>
-            <p class="quote">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
-            <div class="cta-buttons">
+            <div class="name-container" data-aos="fade-up" data-aos-delay="500">
+                <span class="name">I'm </span><span id="typed-text" class="name-highlight"></span>
+            </div>
+            <h2 class="title" data-aos="fade-up" data-aos-delay="700">Designer ,Video editor & <br>Web Developer</h2>
+            <p class="quote" data-aos="fade-up" data-aos-delay="900">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="1100">
                 <a href="#" class="btn-primary">Hire me</a>
                 <a href="#" class="btn-secondary">Contact Me</a>
             </div>
         </div>
-        <div class="hero-image">
+        <div class="hero-image" data-aos="zoom-in" data-aos-delay="300">
             <img src="img/icondanfoto.png" alt="Ahmad Syarif Hidayatullah" class="profile-pic">
         </div>
     </section>
@@ -57,5 +77,145 @@
             <div>Design Graphics</div>
         </div>
     </div>
+
+    <!-- Background particles -->
+    <div id="particles-js"></div>
+
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Script untuk inisialisasi semua animasi -->
+    <script>
+        // Inisialisasi AOS Library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true
+            });
+
+            // Preloader Animation
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    let preloader = document.querySelector('.preloader');
+                    preloader.classList.add('preloader-finish');
+                    
+                    // Animasi elemen setelah preloader hilang
+                    setTimeout(function() {
+                        // GSAP Animations
+                        gsap.from("nav", {duration: 1, y: -50, opacity: 0, ease: "power3.out"});
+                        
+                        // Inisialisasi Typed.js 
+                        var typed = new Typed('#typed-text', {
+                            strings: ['Ahmad Syarif Hidayatullah,'],
+                            typeSpeed: 50,
+                            backSpeed: 30,
+                            backDelay: 1500,
+                            startDelay: 500,
+                            loop: true,
+                            showCursor: true,
+                            cursorChar: '|',
+                            autoInsertCss: true,
+                            smartBackspace: true
+                        });
+                    }, 500);
+                }, 1500);
+            });
+
+            // Particles.js initialization
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 50,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#c1a71a"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#c1a71a",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "bubble"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "bubble": {
+                            "distance": 150,
+                            "size": 6,
+                            "duration": 2,
+                            "opacity": 0.8,
+                            "speed": 3
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
 </body>
 </html>
