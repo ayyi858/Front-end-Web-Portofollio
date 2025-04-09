@@ -240,10 +240,16 @@ nav {
     right: -3px;
 }
 
+/* Perbaikan untuk container nama */
 .name-container {
     display: flex;
+    flex-wrap: nowrap;
     align-items: baseline;
     margin-bottom: 15px;
+    white-space: nowrap;
+    overflow: visible; /* Diubah dari hidden ke visible */
+    width: 100%;
+    max-width: 650px; /* Memperlebar container */
 }
 
 .name {
@@ -251,7 +257,8 @@ nav {
     font-weight: 600;
     line-height: 1.1;
     color: white;
-    display: inline-block;
+    display: inline;
+    white-space: nowrap;
 }
 
 .name-highlight {
@@ -259,7 +266,8 @@ nav {
     font-weight: 600;
     line-height: 1.1;
     color: #c1a71a; /* Warna emas */
-    display: inline-block;
+    display: inline;
+    white-space: nowrap;
     text-shadow: 0 0 5px rgba(193, 167, 26, 0.3);
 }
 
@@ -445,34 +453,23 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 36px;
+        font-size: 32px; /* Ukuran font lebih kecil */
     }
     
     .title {
         font-size: 30px;
     }
-
+    
+    .hero-text {
+        width: 100%; /* Full width pada mobile */
+    }
+    
+    /* Pastikan nama tetap terlihat pada tampilan mobile */
     .name-container {
-        display: flex;
-        align-items: baseline;
-        margin-bottom: 15px;
-        white-space: nowrap; /* Mencegah text wrapping */
-      }
-      
-      .name-highlight {
-        font-size: 40px;
-        font-weight: 600;
-        line-height: 1.1;
-        color: #c1a71a;
-        display: inline-block;
-        white-space: nowrap; /* Mencegah text wrapping */
-      }
-      
-      /* Pastikan parent container juga tidak wrap */
-      .typed-wrapper {
-        white-space: nowrap;
-        overflow: hidden; /* Mencegah overflow */
-      }
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -490,7 +487,7 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 32px;
+        font-size: 26px; /* Ukuran lebih kecil lagi */
     }
     
     .title {
@@ -499,5 +496,15 @@ nav {
     
     .profile-pic {
         max-width: 250px;
+    }
+    
+    /* Untuk layar sangat kecil, tetap gunakan overflow visible */
+    .name-container {
+        overflow: visible;
+    }
+    
+    #typed-text {
+        white-space: normal;
+        word-break: break-word;
     }
 }

@@ -54,7 +54,7 @@
             <h2 class="title" data-aos="fade-up" data-aos-delay="700">Designer ,Video editor & <br>Web Developer</h2>
             <p class="quote" data-aos="fade-up" data-aos-delay="900">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
             <div class="cta-buttons" data-aos="fade-up" data-aos-delay="1100">
-                <a href="#" class="btn-primary">Hire me</a>
+                <a href="#conts" class="btn-primary">Hire me</a>
                 <a href="contact.html" class="btn-secondary">Contact Me</a>
             </div>
         </div>
@@ -108,19 +108,66 @@
                         // GSAP Animations
                         gsap.from("nav", {duration: 1, y: -50, opacity: 0, ease: "power3.out"});
                         
-                        // Inisialisasi Typed.js 
-                        var typed = new Typed('#typed-text', {
-                            strings: ['Ahmad Syarif Hidayatullah,'],
-                            typeSpeed: 50,
-                            backSpeed: 30,
-                            backDelay: 1500,
-                            startDelay: 500,
-                            loop: true,
-                            showCursor: true,
-                            cursorChar: '|',
-                            autoInsertCss: true,
-                            smartBackspace: true
-                        });
+                        // Fungsi untuk menyesuaikan pengaturan Typed.js dengan tetap mempertahankan loop
+                        function adjustTypedSettings() {
+                            // Hapus instansi typed lama jika ada
+                            if (window.typedInstance) {
+                                window.typedInstance.destroy();
+                            }
+                            
+                            // Dapatkan ukuran layar
+                            const screenWidth = window.innerWidth;
+                            
+                            // Element container untuk mengontrol overflow
+                            const nameContainer = document.querySelector('.name-container');
+                            
+                            // Ubah dari hidden ke visible untuk menampilkan seluruh nama
+                            nameContainer.style.overflow = 'visible';
+                            nameContainer.style.whiteSpace = 'nowrap';
+                            
+                            // Konfigurasi yang berbeda berdasarkan ukuran layar
+                            let typingSpeed = 50;
+                            let fontSize = '40px';
+                            
+                            if (screenWidth <= 768) {
+                                typingSpeed = 40;
+                                fontSize = '32px';
+                                document.querySelector('.name').style.fontSize = fontSize;
+                                document.querySelector('.name-highlight').style.fontSize = fontSize;
+                            }
+                            
+                            if (screenWidth <= 480) {
+                                typingSpeed = 30;
+                                fontSize = '26px';
+                                document.querySelector('.name').style.fontSize = fontSize;
+                                document.querySelector('.name-highlight').style.fontSize = fontSize;
+                            }
+                            
+                            // Update CSS untuk Typed cursor
+                            document.documentElement.style.setProperty('--typed-cursor-size', fontSize);
+                            
+                            // Inisialisasi ulang Typed.js dengan loop dan callback untuk memastikan overflow visible
+                            window.typedInstance = new Typed('#typed-text', {
+                                strings: ['Ahmad Syarif Hidayatullah,'],
+                                typeSpeed: typingSpeed,
+                                backSpeed: 30,
+                                backDelay: 1500,
+                                startDelay: 500,
+                                loop: true,
+                                showCursor: true,
+                                cursorChar: '|',
+                                autoInsertCss: true,
+                                smartBackspace: true,
+                                onStringTyped: function() {
+                                    // Pastikan container tetap visible setelah typing selesai
+                                    nameContainer.style.overflow = 'visible';
+                                }
+                            });
+                        }
+                        
+                        // Jalankan fungsi saat halaman dimuat dan saat ukuran layar berubah
+                        adjustTypedSettings();
+                        window.addEventListener('resize', adjustTypedSettings);
                     }, 500);
                 }, 1500);
             });
