@@ -10,6 +10,8 @@ body {
     color: #ffffff;
     background-color: #091538; /* Warna biru navy gelap */
     line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .container {
@@ -27,6 +29,16 @@ img {
     max-width: 100%;
 }
 
+/* Particles background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 /* Header Styles - Disesuaikan dengan about.html */
 header {
     background-color: white;
@@ -34,6 +46,8 @@ header {
     margin: 15px auto;
     width: 95%;
     max-width: 1200px;
+    position: relative;
+    z-index: 2;
 }
 
 .nav-container {
@@ -85,6 +99,8 @@ nav ul li a.active {
     text-align: center;
     padding: 20px 0;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
@@ -97,6 +113,8 @@ nav ul li a.active {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
 }
 
 .portfolio-title-container {
@@ -143,6 +161,8 @@ nav ul li a.active {
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .portfolio-item:hover {
@@ -215,6 +235,8 @@ footer {
     background-color: #081530;
     font-size: 0.9rem;
     color: #cccccc;
+    position: relative;
+    z-index: 2;
 }
 
 /* Modal Styles */
