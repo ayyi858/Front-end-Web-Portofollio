@@ -10,6 +10,8 @@ body {
     color: #ffffff;
     background-color: #0a1538; /* Warna biru navy gelap */
     line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .container {
@@ -27,6 +29,16 @@ img {
     max-width: 100%;
 }
 
+/* Particles background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 /* Header Styles - Disesuaikan dengan about.html */
 header {
     background-color: white;
@@ -34,6 +46,8 @@ header {
     margin: 15px auto;
     width: 95%;
     max-width: 1200px;
+    position: relative;
+    z-index: 2;
 }
 
 .nav-container {
@@ -60,6 +74,11 @@ header {
 .logo img {
     height: 25px;
     margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover img {
+    transform: rotate(10deg);
 }
 
 .logo-text {
@@ -95,6 +114,8 @@ nav ul li a.active {
     text-align: center;
     padding: 20px 0;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
@@ -104,9 +125,11 @@ nav ul li a.active {
 
 /* Contact section styles */
 .contact-section {
-    background-color: #0a1538;
+    background-color: transparent; /* Ubah menjadi transparan agar background particles terlihat */
     color: white;
     padding: 40px 0 80px;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-heading {
@@ -323,6 +346,12 @@ nav ul li a.active {
 .contact-form-section {
     max-width: 600px;
     margin: 0 auto 60px;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(10, 21, 56, 0.7); /* Semi-transparent background */
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px); /* Efek blur untuk background */
 }
 
 .contact-form-section h2 {
@@ -400,6 +429,8 @@ nav ul li a.active {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 2;
 }
 
 .social-container {
@@ -452,6 +483,8 @@ footer {
     font-size: 0.9rem;
     color: #cccccc;
     margin-top: 60px;
+    position: relative;
+    z-index: 2;
 }
 
 /* Animation styles for AOS */

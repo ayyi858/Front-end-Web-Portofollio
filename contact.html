@@ -12,6 +12,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Background particles -->
+    <div id="particles-js"></div>
+
     <!-- Header Section dengan navbar yang sama dengan about -->
     <header>
         <div class="nav-container">
@@ -109,7 +112,7 @@
                 </div>
             </div>
             
-            <div class="contact-form-sectiongit" data-aos="fade-up" data-aos-delay="400">
+            <div class="contact-form-section" data-aos="fade-up" data-aos-delay="400">
                 <h2>Contact</h2>
                 <!-- Form dengan FormSubmit yang mengirim ke Gmail -->
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/boulukapiang858@gmail.com" method="POST">
@@ -178,6 +181,9 @@
         </div>
     </footer>
 
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <!-- Library Scripts untuk animasi -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -252,7 +258,103 @@
                     }, 1500);
                 }, 3000);
             }
+
+            // Inisialisasi Particles.js (seperti pada home.html)
+            initParticles();
         });
+
+        // Fungsi untuk inisialisasi Particles.js (dari home.html)
+        function initParticles() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 50,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#c1a71a"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#c1a71a",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "bubble"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "bubble": {
+                            "distance": 150,
+                            "size": 6,
+                            "duration": 2,
+                            "opacity": 0.8,
+                            "speed": 3
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
     </script>
 </body>
 </html>
