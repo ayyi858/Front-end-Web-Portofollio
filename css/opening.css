@@ -1,0 +1,65 @@
+/* Style untuk grid opening animation */
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #091538;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.grid-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-row {
+    display: flex;
+    flex: 1;
+}
+
+.grid-cell {
+    flex: 1;
+    background-color: #091538;
+    border: 1px solid rgba(193, 167, 26, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.grid-cell.highlight {
+    background-color: rgba(193, 167, 26, 0.15);
+}
+
+.logo-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-logo {
+    max-width: 150px;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 768px) {
+    .grid-logo {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-logo {
+        max-width: 100px;
+    }
+}

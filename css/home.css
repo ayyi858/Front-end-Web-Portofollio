@@ -225,7 +225,7 @@ nav {
 /* Styling untuk kursor Typed.js */
 .typed-cursor {
     color: #c1a71a;
-    font-size: 40px;
+    font-size: var(--typed-cursor-size, 40px);
     font-weight: 400;
     opacity: 1;
     text-shadow: 0 0 10px rgba(193, 167, 26, 0.5);

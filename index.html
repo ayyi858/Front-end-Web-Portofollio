@@ -9,8 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/opening.css">
+    <link rel="stylesheet" href="css/mobile/mobilehome.css">
+    <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Typed.js dari CDN -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <!-- GSAP Animation Library -->
@@ -19,9 +25,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
 </head>
 <body>
+    <!-- Grid Opening Animation -->
+    <div class="grid-overlay">
+        <div class="grid-container">
+            <!-- Grid rows akan dibuat dengan JavaScript -->
+        </div>
+        <div class="logo-container">
+            <img src="img/logorev.png" alt="AY Productions Logo" class="grid-logo">
+        </div>
+    </div>
+
     <!-- Background particles -->
     <div id="particles-js"></div>
 
+    <!-- DESKTOP VERSION -->
     <nav>
         <div class="logo">
             <img src="img/logorev.png" alt="AY Productions Logo">
@@ -49,7 +66,7 @@
             <h2 class="title" data-aos="fade-up" data-aos-delay="700">Designer, Video editor & <br>Web Developer</h2>
             <p class="quote" data-aos="fade-up" data-aos-delay="900">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
             <div class="cta-buttons" data-aos="fade-up" data-aos-delay="1100">
-                <a href="#conts" class="btn-primary">Hire me</a>
+                <a href="#" class="btn-primary">Hire me</a>
                 <a href="contact.html" class="btn-secondary">Contact Me</a>
             </div>
         </div>
@@ -73,213 +90,70 @@
         </div>
     </div>
 
+    <!-- MOBILE VERSION -->
+    <div class="mobile-container">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <div class="logo">
+                <img src="img/logorev.png" alt="AY Productions Logo">
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <!-- Mobile Content -->
+        <main class="mobile-content">
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <div class="profile-image-container">
+                    <img src="img/icondanfoto.png" alt="Ahmad Syarif Hidayatullah" class="profile-pic">
+                    <button class="next-button">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="hello-box">Hello !</div>
+                
+                <div class="profile-info">
+                    <h1 class="name-intro">I'm <span class="name-highlight" id="typed-text-mobile"></span></h1>
+                    <h2 class="title">Designer, Video editor & Web Developer</h2>
+                    <p class="quote">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#" class="btn-primary">Hire me</a>
+                        <a href="contact.html" class="btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- About Me Section -->
+            <section class="about-section">
+                <h2 class="section-title">-About Me</h2>
+                
+                <h3 class="about-heading">Who is Ahmad Syarif Hidayatullah ?</h3>
+                
+                <p class="about-text">
+                    Saya lahir di Polewali Mandar, Sulawesi Barat, dan besar di± 250 Km sebelah Utara dari Kota Makassar, tepatnya di sebuah desa di Kabupaten Polewali Mandar. Sebagai generasi milenial, saya tumbuh dalam dua dunia, yaitu dunia tradisional dan dunia digital. Saya memiliki sedikit pemahaman tentang keduanya dan bagaimana mereka saling mempengaruhi dalam kehidupan sehari-hari.
+                </p>
+                
+                <a href="#" class="btn-outline">
+                    Pendidikan <i class="fas fa-arrow-circle-down"></i>
+                </a>
+            </section>
+        </main>
+    </div>
+
     <!-- Particles.js library -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- Script untuk inisialisasi animasi -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Jalankan AOS
-            AOS.init({
-                duration: 800,
-                easing: 'ease-out',
-                once: true,
-                disable: 'mobile'
-            });
-            
-            // Fungsi untuk menyesuaikan pengaturan Typed.js
-            adjustTypedSettings();
-            
-            // Animasi nav links
-            gsap.from(".nav-links li", {
-                duration: 0.5,
-                opacity: 0,
-                y: -20,
-                stagger: 0.1,
-                ease: "power2.out",
-                delay: 0.3
-            });
-            
-            // Inisialisasi Particles.js
-            initParticles();
-            
-            // Tambahkan efek hover untuk logo pada navigasi
-            const logo = document.querySelector('.logo');
-            
-            logo.addEventListener('mouseenter', function() {
-                gsap.to(logo.querySelector('img'), {
-                    rotate: 10,
-                    scale: 1.1,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-            });
-            
-            logo.addEventListener('mouseleave', function() {
-                gsap.to(logo.querySelector('img'), {
-                    rotate: 0,
-                    scale: 1,
-                    duration: 0.3,
-                    ease: "power2.in"
-                });
-            });
-            
-            // Event untuk reload saat resize browser
-            window.addEventListener('resize', adjustTypedSettings);
-        });
-        
-        // Fungsi untuk menyesuaikan pengaturan Typed.js
-        function adjustTypedSettings() {
-            // Hapus instansi typed lama jika ada
-            if (window.typedInstance) {
-                window.typedInstance.destroy();
-            }
-            
-            // Dapatkan ukuran layar
-            const screenWidth = window.innerWidth;
-            
-            // Element container untuk mengontrol overflow
-            const nameContainer = document.querySelector('.name-container');
-            
-            // Ubah dari hidden ke visible untuk menampilkan seluruh nama
-            nameContainer.style.overflow = 'visible';
-            nameContainer.style.whiteSpace = 'nowrap';
-            
-            // Konfigurasi yang berbeda berdasarkan ukuran layar
-            let typingSpeed = 50;
-            let fontSize = '40px';
-            
-            if (screenWidth <= 768) {
-                typingSpeed = 40;
-                fontSize = '32px';
-                document.querySelector('.name').style.fontSize = fontSize;
-                document.querySelector('.name-highlight').style.fontSize = fontSize;
-            }
-            
-            if (screenWidth <= 480) {
-                typingSpeed = 30;
-                fontSize = '26px';
-                document.querySelector('.name').style.fontSize = fontSize;
-                document.querySelector('.name-highlight').style.fontSize = fontSize;
-            }
-            
-            // Update CSS untuk Typed cursor
-            document.documentElement.style.setProperty('--typed-cursor-size', fontSize);
-            
-            // Inisialisasi ulang Typed.js dengan loop dan callback untuk memastikan overflow visible
-            window.typedInstance = new Typed('#typed-text', {
-                strings: [' Ahmad Syarif Hidayatullah,'],
-                typeSpeed: typingSpeed,
-                backSpeed: 30,
-                backDelay: 1500,
-                startDelay: 500,
-                loop: true,
-                showCursor: true,
-                cursorChar: '|',
-                autoInsertCss: true,
-                smartBackspace: true,
-                onStringTyped: function() {
-                    // Pastikan container tetap visible setelah typing selesai
-                    nameContainer.style.overflow = 'visible';
-                }
-            });
-        }
-        
-        // Inisialisasi Particles.js
-        function initParticles() {
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": {
-                        "value": 50,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#c1a71a"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#c1a71a",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "bubble"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "bubble": {
-                            "distance": 150,
-                            "size": 6,
-                            "duration": 2,
-                            "opacity": 0.8,
-                            "speed": 3
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-        }
-    </script>
+    <!-- Script untuk grid opening & inisialisasi animasi -->
+    <script src="js/loading.js"></script>
+    <script src="js/mobile/home.js"></script>
 </body>
 </html>
