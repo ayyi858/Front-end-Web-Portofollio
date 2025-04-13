@@ -1,12 +1,26 @@
 // Grid Opening Animation
 document.addEventListener('DOMContentLoaded', function() {
-    // Buat grid cells dan mulai animasi setiap kali refresh
-    createGrid();
+    // Cek apakah datang dari navigasi internal website
+    // Jika referrer URL berasal dari domain yang sama, berarti navigasi internal
+    const isInternalNavigation = document.referrer && 
+                                new URL(document.referrer).hostname === window.location.hostname;
     
-    // Mulai animasi grid dengan sedikit delay
-    setTimeout(function() {
-        animateGrid();
-    }, 300);
+    if (isInternalNavigation) {
+        // Jika navigasi dari halaman internal website, langsung tampilkan konten tanpa animasi
+        const gridOverlay = document.querySelector('.grid-overlay');
+        if (gridOverlay) {
+            gridOverlay.style.display = 'none';
+        }
+        initMainContentWithoutAnimation();
+    } else {
+        // Jika bukan navigasi internal (misalnya refresh atau kunjungan baru), tampilkan animasi
+        createGrid();
+        
+        // Mulai animasi grid dengan sedikit delay
+        setTimeout(function() {
+            animateGrid();
+        }, 300);
+    }
 });
 
 // Fungsi untuk membuat grid
@@ -208,6 +222,49 @@ function highlightPattern(pattern, cells) {
     }
 }
 
+// Fungsi untuk menginisialisasi konten utama tanpa animasi
+function initMainContentWithoutAnimation() {
+    // Deteksi apakah mobile atau desktop
+    const isMobile = window.innerWidth <= 767;
+    
+    if (isMobile) {
+        // Tampilkan konten mobile
+        document.body.classList.add('mobile-view');
+        const mobileContainer = document.querySelector('.mobile-container');
+        if (mobileContainer) {
+            mobileContainer.style.display = 'block';
+        }
+        
+        // Setup typing effect untuk mobile
+        setupMobileTyped();
+    } else {
+        // Pastikan mobile view tidak aktif
+        document.body.classList.remove('mobile-view');
+        
+        // Set elemen-elemen langsung terlihat tanpa animasi
+        gsap.set('nav, .hero, .skills-bar', { opacity: 1 });
+        
+        // Setup typing effect untuk desktop
+        setupTypingEffect();
+        
+        // Set up efek hover untuk logo
+        setupLogoHoverEffect();
+    }
+    
+    // Jalankan AOS untuk semua device
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            disable: 'mobile'
+        });
+    }
+    
+    // Inisialisasi Particles.js
+    initParticles();
+}
+
 // Fungsi untuk menginisialisasi konten utama
 function initMainContent() {
     // Deteksi apakah mobile atau desktop
@@ -337,7 +394,14 @@ function setupMobileTyped() {
     }
     
     // Inisialisasi Typed.js di mobile
-    if (typeof Typed !== 'undefined' && document.getElementById('typed-text-mobile')) {
+    const mobileTypedElement = document.querySelector('#typed-text-mobile');
+    if (typeof Typed !== 'undefined' && mobileTypedElement) {
+        // Reset styling untuk container
+        const nameContainer = document.querySelector('.name-line');
+        if (nameContainer) {
+            nameContainer.style.width = '100%';
+        }
+        
         window.mobileTypedInstance = new Typed('#typed-text-mobile', {
             strings: ['Ahmad Syarif Hidayatullah,'],
             typeSpeed: 40,
@@ -350,6 +414,16 @@ function setupMobileTyped() {
             autoInsertCss: true,
             smartBackspace: true
         });
+        
+        // Pastikan kursor typed.js terlihat dan berada pada posisi yang tepat
+        setTimeout(function() {
+            const cursor = document.querySelector('.typed-cursor');
+            if (cursor) {
+                cursor.style.verticalAlign = 'baseline';
+                cursor.style.marginLeft = '2px';
+                cursor.style.display = 'inline-block';
+            }
+        }, 500);
     }
 }
 

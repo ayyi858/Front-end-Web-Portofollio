@@ -68,7 +68,7 @@ function setupTypingEffect() {
     }
 }
 
-// Fungsi untuk setup typed.js pada mobile
+// Fungsi untuk setup typed.js pada mobile - DIREVISI
 function setupMobileTyped() {
     // Hapus instansi typed lama jika ada
     if (window.mobileTypedInstance) {
@@ -78,6 +78,12 @@ function setupMobileTyped() {
     // Inisialisasi Typed.js di mobile
     const mobileTypedElement = document.querySelector('#typed-text-mobile');
     if (typeof Typed !== 'undefined' && mobileTypedElement) {
+        // Reset styling untuk container
+        const nameContainer = document.querySelector('.name-line');
+        if (nameContainer) {
+            nameContainer.style.width = '100%';
+        }
+        
         window.mobileTypedInstance = new Typed('#typed-text-mobile', {
             strings: ['Ahmad Syarif Hidayatullah,'],
             typeSpeed: 40,
@@ -91,12 +97,13 @@ function setupMobileTyped() {
             smartBackspace: true
         });
         
-        // Pastikan kursor typed.js berada pada posisi yang tepat
+        // Pastikan kursor typed.js terlihat dan berada pada posisi yang tepat
         setTimeout(function() {
             const cursor = document.querySelector('.typed-cursor');
             if (cursor) {
-                cursor.style.verticalAlign = 'middle';
+                cursor.style.verticalAlign = 'baseline';
                 cursor.style.marginLeft = '2px';
+                cursor.style.display = 'inline-block';
             }
         }, 500);
     }

@@ -159,23 +159,34 @@ body.mobile-view .skills-bar {
     padding: 0 15px;
 }
 
-/* Nama dalam satu baris */
+/* Nama dalam satu baris - DIREVISI */
 .name-line {
-    font-size: 36px;
-    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     margin: 0 0 15px 0;
-    text-align: center;
-    line-height: 1.3;
+    overflow: visible;
+    width: 100%;
 }
 
+/* Style untuk text "I'm" - DIREVISI */
 .im-text {
     color: var(--white);
     font-weight: 600;
+    font-size: 30px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
+/* Style untuk nama dengan highlight - DIREVISI */
 .name-highlight {
     color: var(--accent-color);
     font-weight: 700;
+    font-size: 30px;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 /* Title */
@@ -394,14 +405,16 @@ body.mobile-view .skills-bar {
     stroke: white;
 }
 
-/* Typing Cursor Style */
+/* Typing Cursor Style - DIREVISI */
 .typed-cursor {
     color: var(--accent-color);
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 400;
     opacity: 1;
     animation: blink 0.7s infinite;
-    vertical-align: middle;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 2px;
 }
 
 @keyframes blink {
@@ -434,8 +447,9 @@ body.mobile-view .skills-bar {
         width: 220px;
     }
     
-    .name-line {
-        font-size: 30px;
+    /* Responsif untuk ukuran font */
+    .im-text, .name-highlight, .typed-cursor {
+        font-size: 26px;
     }
     
     .profile-section .title {
