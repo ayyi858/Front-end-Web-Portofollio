@@ -139,7 +139,8 @@ nav {
 }
 
 .hero-text {
-    max-width: 600px;
+    max-width: 550px; /* Diperkecil dari 600px */
+    margin-right: 20px; /* Tambahkan margin kanan */
 }
 
 .hello-box {
@@ -199,11 +200,12 @@ nav {
     white-space: nowrap;
     overflow: visible;
     width: 100%;
-    max-width: 650px;
+    max-width: 520px; /* Dibatasi agar tidak terlalu lebar */
 }
 
+/* Pengurangan ukuran font nama */
 .name {
-    font-size: 40px;
+    font-size: 36px; /* Diperkecil dari 40px */
     font-weight: 600;
     line-height: 1.1;
     color: white;
@@ -212,7 +214,7 @@ nav {
 }
 
 .name-highlight {
-    font-size: 40px;
+    font-size: 36px; /* Diperkecil dari 40px */
     font-weight: 600;
     margin-bottom: 10px;
     line-height: 1.1;
@@ -225,7 +227,7 @@ nav {
 /* Styling untuk kursor Typed.js */
 .typed-cursor {
     color: #c1a71a;
-    font-size: var(--typed-cursor-size, 40px);
+    font-size: 36px; /* Diperkecil dari 40px */
     font-weight: 400;
     opacity: 1;
     text-shadow: 0 0 10px rgba(193, 167, 26, 0.5);
@@ -238,8 +240,9 @@ nav {
     100% { opacity: 1; }
 }
 
+/* Perkecil ukuran judul */
 .title {
-    font-size: 36px;
+    font-size: 32px; /* Diperkecil dari 36px */
     font-weight: 600;
     margin-top: -8px;
     margin-bottom: 20px;
@@ -247,9 +250,10 @@ nav {
     color: white;
 }
 
+/* Perkecil ukuran quote */
 .quote {
     color: white;
-    font-size: 18px;
+    font-size: 16px; /* Diperkecil dari 18px */
     margin-bottom: 30px;
     line-height: 1.5;
     max-width: 550px;
@@ -315,13 +319,14 @@ nav {
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
-/* Foto profil */
+/* Foto profil - UKURAN DIPERKECIL */
 .hero-image {
     position: relative;
+    width: 340px; /* Diperkecil dari 380px */
+    flex-shrink: 0; /* Mencegah penyusutan */
 }
 
 .profile-pic {
-    max-width: 380px;
     width: 100%;
     height: auto;
     position: relative;
@@ -380,8 +385,20 @@ nav {
         padding: 50px 5%;
     }
     
-    .profile-pic {
-        max-width: 300px;
+    .hero-image {
+        width: 280px; /* Ukuran yang lebih kecil untuk tablet */
+    }
+    
+    .name, .name-highlight, .typed-cursor {
+        font-size: 32px; /* Ukuran yang lebih kecil untuk tablet */
+    }
+    
+    .title {
+        font-size: 28px; /* Ukuran title yang lebih kecil untuk tablet */
+    }
+    
+    .quote {
+        font-size: 15px; /* Ukuran quote yang lebih kecil untuk tablet */
     }
 }
 
@@ -397,6 +414,7 @@ nav {
 
     .hero-image {
         margin-top: 40px;
+        width: 240px; /* Ukuran lebih kecil untuk mobile */
     }
     
     .skills-content {
@@ -404,15 +422,20 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 32px; /* Ukuran font lebih kecil */
+        font-size: 28px; /* Ukuran font lebih kecil untuk mobile */
     }
     
     .title {
-        font-size: 30px;
+        font-size: 24px; /* Ukuran lebih kecil untuk mobile */
+    }
+    
+    .quote {
+        font-size: 14px; /* Ukuran lebih kecil untuk mobile */
     }
     
     .hero-text {
         width: 100%; /* Full width pada mobile */
+        margin-right: 0;
     }
     
     /* Pastikan nama tetap terlihat pada tampilan mobile */
@@ -459,15 +482,19 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 26px; /* Ukuran lebih kecil lagi */
+        font-size: 24px; /* Ukuran lebih kecil lagi */
     }
     
     .title {
-        font-size: 24px;
+        font-size: 20px; /* Ukuran lebih kecil untuk smartphone */
     }
     
-    .profile-pic {
-        max-width: 250px;
+    .quote {
+        font-size: 13px; /* Ukuran lebih kecil untuk smartphone */
+    }
+    
+    .hero-image {
+        width: 200px; /* Untuk smartphone kecil */
     }
     
     /* Untuk layar sangat kecil, tetap gunakan overflow visible */

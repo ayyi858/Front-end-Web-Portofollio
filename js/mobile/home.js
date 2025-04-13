@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // Pastikan desktop mode aktif
         document.body.classList.remove('mobile-view');
+        
+        // Setup desktop typed effect
+        setupTypingEffect();
     }
     
     // Setup toggle menu
@@ -23,34 +26,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Setup tombol next pada foto profil
-    const nextButton = document.querySelector('.next-button');
-    if (nextButton) {
-        nextButton.addEventListener('click', function() {
-            // Scroll ke bagian About
-            const aboutSection = document.querySelector('.about-section');
-            if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    }
-    
-    // Setup tombol Pendidikan
+    // Setup tombol Pendidikan - link langsung ke about.html
     const educationButton = document.querySelector('.btn-outline');
     if (educationButton) {
         educationButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Implementasi toggle tampilan pendidikan
-            // Untuk sekarang, cukup animasikan ikon
+            // Link sudah terpasang di a href, tidak perlu preventDefault
+            // Animasi ikon saat diklik
             const icon = this.querySelector('i');
-            gsap.to(icon, {
-                rotation: icon.style.transform.includes('180deg') ? 0 : 180,
-                duration: 0.3,
-                ease: "power2.inOut"
-            });
+            if (icon) {
+                gsap.to(icon, {
+                    rotation: 180,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                });
+            }
         });
     }
 });
+
+// Fungsi untuk setup typing effect desktop
+function setupTypingEffect() {
+    // Hapus instansi typed lama jika ada
+    if (window.typedInstance) {
+        window.typedInstance.destroy();
+    }
+    
+    // Inisialisasi Typed.js
+    if (typeof Typed !== 'undefined' && document.getElementById('typed-text')) {
+        window.typedInstance = new Typed('#typed-text', {
+            strings: [' Ahmad Syarif Hidayatullah,'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 1500,
+            startDelay: 500,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|',
+            autoInsertCss: true,
+            smartBackspace: true
+        });
+    }
+}
 
 // Fungsi untuk setup typed.js pada mobile
 function setupMobileTyped() {
@@ -74,6 +90,15 @@ function setupMobileTyped() {
             autoInsertCss: true,
             smartBackspace: true
         });
+        
+        // Pastikan kursor typed.js berada pada posisi yang tepat
+        setTimeout(function() {
+            const cursor = document.querySelector('.typed-cursor');
+            if (cursor) {
+                cursor.style.verticalAlign = 'middle';
+                cursor.style.marginLeft = '2px';
+            }
+        }, 500);
     }
 }
 
@@ -87,7 +112,6 @@ function showMobileMenu() {
         mobileMenu.innerHTML = `
             <div class="mobile-menu-header">
                 <div class="logo">
-                    <img src="img/logorev.png" alt="AY Productions Logo">
                 </div>
                 <div class="menu-close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="x-icon">
@@ -96,11 +120,11 @@ function showMobileMenu() {
                     </svg>
                 </div>
             </div>
-            <h2 class="mobile-menu-title">Navigations</h2>
+            <h2 class="mobile-menu-title">Navigation</h2>
             <ul class="mobile-nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
-                <li><a href="porto.html">Portofolio</a></li>
+                <li><a href="porto.html">Portfolio</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="mobile-links-section">
@@ -156,6 +180,7 @@ window.addEventListener('resize', function() {
         setupMobileTyped();
     } else {
         document.body.classList.remove('mobile-view');
+        setupTypingEffect();
         
         // Sembunyikan menu mobile jika masih terbuka saat resize
         const mobileMenu = document.querySelector('.mobile-menu-overlay');
