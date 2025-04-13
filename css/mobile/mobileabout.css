@@ -1,174 +1,284 @@
-/* CSS untuk Mobile About dengan Skills Desktop */
+/* CSS untuk Mobile About dengan tampilan baru sesuai gambar - menggunakan navigasi dari home.html */
 
-/* Media Query untuk tampilan mobile */
+/* Import style navigasi dari mobilehome.css */
+@import url('../mobile/mobilehome.css');
+
 @media (max-width: 767px) {
-    /* Pastikan seluruh konten memiliki scrolling */
+    /* Reset styling untuk desktop */
     body {
+        margin: 0;
+        padding: 0;
         overflow-x: hidden;
-        overflow-y: auto;
+        background-color: #001540; /* Warna biru navy gelap */
+        color: white;
+        font-family: 'Poppins', sans-serif;
     }
     
-    /* Atur container menjadi full width */
-    .container {
+    /* Header style - sembunyikan header desktop */
+    header {
+        display: none !important;
+    }
+    
+    /* Tampilkan header mobile seperti di homepage */
+    .mobile-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: #c1a71a; /* Warna emas */
+        position: sticky;
+        top: 0;
+        z-index: 10;
         width: 100%;
-        padding: 0 15px;
     }
     
-    /* Header Section - Mobile Style */
-    header .nav-container {
-        flex-direction: column;
-        padding: 10px 15px;
-    }
-    
-    header .logo {
-        margin-bottom: 10px;
-    }
-    
-    header nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    header nav ul li {
-        margin: 5px 10px;
-    }
-    
-    /* Hero Section - Mobile Style */
-    .hero {
-        padding: 30px 0;
-    }
-    
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    /* About Me Section - Mobile Style */
-    .about-section {
-        padding: 30px 0;
-    }
-    
-    .about-content {
-        flex-direction: column;
-    }
-    
-    .profile-image {
-        margin: 0 auto 20px;
-        max-width: 200px;
-    }
-    
-    .about-text {
-        text-align: center;
-    }
-    
-    .about-text .btn {
-        margin: 0 auto;
+    /* Style untuk logo */
+    .mobile-header .logo {
         display: flex;
-        justify-content: center;
-        width: 200px;
+        align-items: center;
     }
     
-    /* Education & Work Section - Mobile Style */
+    .mobile-header .logo img {
+        height: 30px;
+    }
+    
+    /* Style untuk hamburger menu */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .menu-toggle span {
+        height: 3px;
+        width: 100%;
+        background-color: white;
+        border-radius: 3px;
+    }
+    
+    /* Sembunyikan hero section */
+    .hero {
+        display: none;
+    }
+    
+    /* Sembunyikan section title */
+    .section-title {
+        display: none;
+    }
+    
+    /* Sembunyikan tentang saya section */
+    .about-section {
+        display: none;
+    }
+    
+    /* Education & Work Section - style baru */
     .edu-work-section {
-        padding: 30px 0;
+        padding: 20px 15px !important;
+        margin-top: 0;
+    }
+    
+    .journey-header {
+        text-align: center;
+        position: relative;
+        padding-top: 15px;
+    }
+    
+    .journey-header::before {
+        content: "-Education & Work";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
     }
     
     .journey-header h3 {
-        font-size: 1.6rem;
+        font-size: 1.5rem !important;
+        margin-bottom: 10px !important;
         text-align: center;
     }
     
+    .journey-header h3 span {
+        color: #c1a71a; /* Warna emas */
+    }
+    
+    /* Style untuk quote */
     .quote {
-        padding-left: 15px;
-        margin-left: 0;
+        border-left: none !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         text-align: center;
-    }
-    
-    .education-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    /* Timeline items - Mobile Style */
-    .timeline::before {
-        left: 15px;
-    }
-    
-    .timeline-item .dot {
-        left: 15px;
-    }
-    
-    .timeline-item.left .content,
-    .timeline-item.right .content {
-        width: calc(100% - 30px);
-        margin-left: 30px;
-        margin-right: 0;
-    }
-    
-    .subsection-title, 
-    .subsection-title1 {
-        text-align: left;
-        margin-bottom: 15px;
-    }
-    
-    /* Footer - Mobile Style */
-    footer {
-        padding: 15px 0;
+        margin-bottom: 20px !important;
+        position: relative;
         font-size: 0.8rem;
     }
     
-    /* PENTING: Semua style Skills Section tidak dimasukkan disini
-       karena kita ingin mempertahankan tampilan desktop untuk Skills */
-}
+    .quote p {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        color: #ffffff !important;
+        margin: 0 10px;
+    }
+    
+    /* Style untuk subsection title */
+    .subsection-title, 
+    .subsection-title1 {
+        background-color: #001540;
+        color: white;
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        border: 1px solid #c1a71a;
+        margin: 20px 0 15px 0 !important;
+        font-size: 0.9rem !important;
+        text-align: left !important;
+    }
+    
+    /* Education card baru */
+    .education-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    .edu-card {
+        background-color: #132b65 !important; /* Warna biru lebih terang */
+        border-radius: 10px !important;
+        padding: 15px !important;
+        display: flex !important;
+        align-items: center;
+    }
+    
+    .edu-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    .school-logo {
+        width: 40px !important;
+        height: 40px !important;
+        margin-right: 15px !important;
+        margin-bottom: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .school-logo img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    
+    .edu-card h5 {
+        font-size: 0.9rem !important;
+        margin-bottom: 5px !important;
+        display: block !important;
+    }
+    
+    .edu-card .year {
+        font-size: 0.75rem !important;
+        color: #a1a1a1;
+        font-weight: normal;
+        display: block;
+    }
+    
+    .edu-card p {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Hapus styling timeline */
+    .timeline::before {
+        display: none !important;
+    }
+    
+    .timeline-item .dot {
+        display: none !important;
+    }
+    
+    /* Work experience cards */
+    .timeline-item {
+        margin-bottom: 10px !important;
+    }
+    
+    .timeline-item .content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background-color: #132b65 !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .timeline-item .content:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    .timeline-item h5 {
+        font-size: 0.9rem !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .timeline-item .year {
+        font-size: 0.75rem !important;
+    }
+    
+    .timeline-item p {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .timeline-item .company-logo {
+        text-align: right !important;
+    }
+    
+    .timeline-item .company-logo img {
+        height: 30px !important;
+    }
+    
+    /* Tombol My Skill di bagian bawah */
+    .my-skill-button {
+        display: block;
+        background-color: #c1a71a;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin: 20px auto;
+        width: 120px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+    
+    /* Style untuk logo AY Productions di atas */
+    .ay-logo {
+        position: fixed;
+        top: 0;
+        left: 15px;
+        display: flex;
+        align-items: center;
+        z-index: 20;
+    }
+    
+    .ay-logo img {
+        height: 30px;
+    }
+    
+    /* PENTING: Class skills-section tetap mengikuti style desktop original */
+    /* Lihat file mobileabout.css untuk reference */
 
-/* Media query khusus untuk Skills Section */
-@media (max-width: 767px) {
-    /* Override style mobile agar skills tampil seperti desktop */
-    .skills-section {
-        /* Gunakan max-width untuk membatasi lebar container */
-        max-width: 100%;
-        overflow-x: hidden;
-        padding: 30px 15px;
-    }
-    
-    /* Batalkan kolom tunggal pada tampilan mobile dan kembalikan ke grid */
-    .skills-list {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-    }
-    
-    /* Ukuran container yang dapat discroll horizontal jika diperlukan */
-    .skills-wrapper {
-        overflow-x: auto;
-        padding-bottom: 15px;
-    }
-    
-    /* Pastikan skill card tidak menjadi terlalu kecil */
-    .skill-info {
-        min-width: 280px;
-    }
-    
-    /* Pastikan category-header tidak berubah menjadi layout mobile */
-    .category-header {
-        flex-direction: row !important;
-        align-items: center !important;
-    }
-    
-    /* Tampilan skill item tetap seperti desktop */
-    .skill-item {
-        margin-bottom: 15px;
-    }
-    
-    /* Tambahkan indikator scroll pada skills-wrapper jika ada overflow */
-    .skills-wrapper::-webkit-scrollbar {
-        height: 5px;
-    }
-    
-    .skills-wrapper::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-    }
-    
-    .skills-wrapper::-webkit-scrollbar-thumb {
-        background: #c1a71a;
-        border-radius: 10px;
+    /* Footer - sembunyikan di mobile */
+    footer {
+        display: none !important;
     }
 }
