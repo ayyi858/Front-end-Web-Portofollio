@@ -10,9 +10,9 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/opening.css">
     <link rel="stylesheet" href="css/mobile/mobilehome.css">
+    <link rel="stylesheet" href="css/home.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Font Awesome untuk ikon -->
@@ -23,6 +23,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <!-- GSAP Text Plugin untuk animasi teks -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <!-- Fix untuk desktop vs mobile font size -->
+    <style>
+        /* Khusus untuk desktop typed cursor */
+        body:not(.mobile-view) .name,
+        body:not(.mobile-view) .name-highlight,
+        body:not(.mobile-view) .typed-cursor {
+            font-size: 36px !important;
+        }
+        
+        /* Khusus untuk mobile typed cursor */
+        body.mobile-view .im-text,
+        body.mobile-view .name-highlight,
+        body.mobile-view .typed-cursor {
+            font-size: 26px !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Grid Opening Animation -->
@@ -61,7 +77,7 @@
                 <div class="corner-br"></div>
             </div>
             <div class="name-container" data-aos="fade-up" data-aos-delay="500">
-                <span class="name">I'm</span><span class="name">&nbsp;</span><span id="typed-text" class="name-highlight"></span>
+                <span class="name" style="font-size: 36px !important;">I'm</span><span class="name" style="font-size: 36px !important;">&nbsp;</span><span id="typed-text" class="name-highlight" style="font-size: 36px !important;"></span>
             </div>
             <h2 class="title" data-aos="fade-up" data-aos-delay="700">Designer, Video editor & <br>Web Developer</h2>
             <p class="quote" data-aos="fade-up" data-aos-delay="900">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
@@ -123,7 +139,7 @@
                 <!-- PERBAIKAN: Bagian profile-info -->
                 <div class="profile-info">
                     <div class="name-line">
-                        <span class="im-text">I'm</span> <span class="name-highlight" id="typed-text-mobile"></span>
+                        <span class="im-text" style="font-size: 26px !important;">I'm</span> <span class="name-highlight" id="typed-text-mobile" style="font-size: 26px !important;"></span>
                     </div>
                     <h2 class="title">Designer, Video editor & Web Developer</h2>
                     <p class="quote">Tidur adalah bagian dari Ibadah, Maka dari itu saya sering tidur Untuk Menemui Mimpi saya.</p>
@@ -158,5 +174,75 @@
     <!-- Script untuk grid opening & inisialisasi animasi -->
     <script src="js/loading.js"></script>
     <script src="js/mobile/home.js"></script>
+    
+    <!-- Script untuk memperbaiki ukuran font -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fungsi untuk memperbaiki ukuran font desktop
+        function fixDesktopFontSize() {
+            if (!document.body.classList.contains('mobile-view')) {
+                // Hanya jalankan di tampilan desktop
+                const nameElements = document.querySelectorAll('.name');
+                const nameHighlightElement = document.querySelector('#typed-text');
+                const typedCursor = document.querySelector('.typed-cursor');
+                
+                // Set ukuran font elemen nama
+                nameElements.forEach(function(el) {
+                    el.style.fontSize = '36px';
+                });
+                
+                // Set ukuran font elemen highlight nama
+                if (nameHighlightElement) {
+                    nameHighlightElement.style.fontSize = '36px';
+                }
+                
+                // Set ukuran font cursor typed
+                if (typedCursor) {
+                    typedCursor.style.fontSize = '36px';
+                }
+            } else {
+                // Pastikan ukuran font mobile tetap 26px
+                const imTextElement = document.querySelector('.im-text');
+                const nameHighlightElement = document.querySelector('#typed-text-mobile');
+                const typedCursor = document.querySelector('.typed-cursor');
+                
+                if (imTextElement) {
+                    imTextElement.style.fontSize = '26px';
+                }
+                
+                if (nameHighlightElement) {
+                    nameHighlightElement.style.fontSize = '26px';
+                }
+                
+                if (typedCursor) {
+                    typedCursor.style.fontSize = '26px';
+                }
+            }
+        }
+        
+        // Jalankan saat halaman dimuat
+        fixDesktopFontSize();
+        
+        // Jalankan setiap kali window di-resize
+        window.addEventListener('resize', fixDesktopFontSize);
+        
+        // Jalankan saat class mobile-view berubah
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    fixDesktopFontSize();
+                }
+            });
+        });
+        
+        observer.observe(document.body, { attributes: true });
+        
+        // Jalankan setiap 500ms selama 5 detik untuk memastikan
+        const interval = setInterval(fixDesktopFontSize, 500);
+        setTimeout(function() {
+            clearInterval(interval);
+        }, 5000);
+    });
+    </script>
 </body>
 </html>

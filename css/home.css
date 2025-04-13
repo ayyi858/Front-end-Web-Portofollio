@@ -205,7 +205,7 @@ nav {
 
 /* Pengurangan ukuran font nama */
 .name {
-    font-size: 36px; /* Diperkecil dari 40px */
+    font-size: 36px !important; /* Ukuran font yang konsisten dengan !important */
     font-weight: 600;
     line-height: 1.1;
     color: white;
@@ -214,7 +214,7 @@ nav {
 }
 
 .name-highlight {
-    font-size: 36px; /* Diperkecil dari 40px */
+    font-size: 36px !important; /* Ukuran font yang konsisten dengan !important */
     font-weight: 600;
     margin-bottom: 10px;
     line-height: 1.1;
@@ -227,7 +227,7 @@ nav {
 /* Styling untuk kursor Typed.js */
 .typed-cursor {
     color: #c1a71a;
-    font-size: 36px; /* Diperkecil dari 40px */
+    font-size: 36px !important; /* Ukuran font yang konsisten dengan !important */
     font-weight: 400;
     opacity: 1;
     text-shadow: 0 0 10px rgba(193, 167, 26, 0.5);
@@ -390,7 +390,7 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 32px; /* Ukuran yang lebih kecil untuk tablet */
+        font-size: 36px !important; /* Ukuran font tetap konsisten */
     }
     
     .title {
@@ -422,7 +422,7 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 28px; /* Ukuran font lebih kecil untuk mobile */
+        font-size: 36px !important; /* Ukuran font tetap konsisten */
     }
     
     .title {
@@ -482,7 +482,7 @@ nav {
     }
     
     .name, .name-highlight, .typed-cursor {
-        font-size: 24px; /* Ukuran lebih kecil lagi */
+        font-size: 36px !important; /* Ukuran font tetap konsisten */
     }
     
     .title {
