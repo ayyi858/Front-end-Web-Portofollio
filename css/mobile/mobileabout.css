@@ -1,0 +1,174 @@
+/* CSS untuk Mobile About dengan Skills Desktop */
+
+/* Media Query untuk tampilan mobile */
+@media (max-width: 767px) {
+    /* Pastikan seluruh konten memiliki scrolling */
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    /* Atur container menjadi full width */
+    .container {
+        width: 100%;
+        padding: 0 15px;
+    }
+    
+    /* Header Section - Mobile Style */
+    header .nav-container {
+        flex-direction: column;
+        padding: 10px 15px;
+    }
+    
+    header .logo {
+        margin-bottom: 10px;
+    }
+    
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    header nav ul li {
+        margin: 5px 10px;
+    }
+    
+    /* Hero Section - Mobile Style */
+    .hero {
+        padding: 30px 0;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    /* About Me Section - Mobile Style */
+    .about-section {
+        padding: 30px 0;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .profile-image {
+        margin: 0 auto 20px;
+        max-width: 200px;
+    }
+    
+    .about-text {
+        text-align: center;
+    }
+    
+    .about-text .btn {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        width: 200px;
+    }
+    
+    /* Education & Work Section - Mobile Style */
+    .edu-work-section {
+        padding: 30px 0;
+    }
+    
+    .journey-header h3 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    
+    .quote {
+        padding-left: 15px;
+        margin-left: 0;
+        text-align: center;
+    }
+    
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Timeline items - Mobile Style */
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-item .dot {
+        left: 15px;
+    }
+    
+    .timeline-item.left .content,
+    .timeline-item.right .content {
+        width: calc(100% - 30px);
+        margin-left: 30px;
+        margin-right: 0;
+    }
+    
+    .subsection-title, 
+    .subsection-title1 {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    
+    /* Footer - Mobile Style */
+    footer {
+        padding: 15px 0;
+        font-size: 0.8rem;
+    }
+    
+    /* PENTING: Semua style Skills Section tidak dimasukkan disini
+       karena kita ingin mempertahankan tampilan desktop untuk Skills */
+}
+
+/* Media query khusus untuk Skills Section */
+@media (max-width: 767px) {
+    /* Override style mobile agar skills tampil seperti desktop */
+    .skills-section {
+        /* Gunakan max-width untuk membatasi lebar container */
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 30px 15px;
+    }
+    
+    /* Batalkan kolom tunggal pada tampilan mobile dan kembalikan ke grid */
+    .skills-list {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    }
+    
+    /* Ukuran container yang dapat discroll horizontal jika diperlukan */
+    .skills-wrapper {
+        overflow-x: auto;
+        padding-bottom: 15px;
+    }
+    
+    /* Pastikan skill card tidak menjadi terlalu kecil */
+    .skill-info {
+        min-width: 280px;
+    }
+    
+    /* Pastikan category-header tidak berubah menjadi layout mobile */
+    .category-header {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    /* Tampilan skill item tetap seperti desktop */
+    .skill-item {
+        margin-bottom: 15px;
+    }
+    
+    /* Tambahkan indikator scroll pada skills-wrapper jika ada overflow */
+    .skills-wrapper::-webkit-scrollbar {
+        height: 5px;
+    }
+    
+    .skills-wrapper::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    
+    .skills-wrapper::-webkit-scrollbar-thumb {
+        background: #c1a71a;
+        border-radius: 10px;
+    }
+}
