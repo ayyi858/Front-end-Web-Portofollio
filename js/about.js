@@ -64,3 +64,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Modifikasi fungsi untuk menambahkan tombol My Skill
+window.addEventListener('DOMContentLoaded', function() {
+    // Deteksi apakah perangkat mobile
+    const isMobile = window.innerWidth <= 767;
+    
+    // Hanya tambahkan tombol My Skill jika dalam mode mobile
+    if (isMobile) {
+        addMySkillButton();
+    }
+});
+
+// Tambahkan event listener untuk resize window
+window.addEventListener('resize', function() {
+    const isMobile = window.innerWidth <= 767;
+    
+    // Tambahkan atau hapus tombol My Skill berdasarkan ukuran layar
+    if (isMobile) {
+        // Jika mobile dan belum ada tombol, tambahkan
+        if (!document.querySelector('.my-skill-button')) {
+            addMySkillButton();
+        }
+    } else {
+        // Jika desktop dan ada tombol, hapus
+        const mySkillButton = document.querySelector('.my-skill-button');
+        if (mySkillButton) {
+            mySkillButton.remove();
+        }
+    }
+});
+
+// Fungsi untuk menambahkan tombol My Skill
+function addMySkillButton() {
+    const eduWorkSection = document.querySelector('.edu-work-section');
+    if (eduWorkSection && !document.querySelector('.my-skill-button')) {
+        const mySkillButton = document.createElement('a');
+        mySkillButton.className = 'my-skill-button';
+        mySkillButton.href = '#skills';
+        mySkillButton.textContent = 'My Skill';
+        eduWorkSection.appendChild(mySkillButton);
+        
+        // Tambahkan event listener untuk smooth scroll
+        mySkillButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#skills').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    }
+}

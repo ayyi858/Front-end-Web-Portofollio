@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileHeader.className = 'mobile-header';
             mobileHeader.innerHTML = `
                 <div class="logo">
+                    <img src="img/logorev.png" alt="AY Productions Logo">
                 </div>
                 <div class="menu-toggle">
                     <span></span>
@@ -110,7 +111,6 @@ function showMobileMenu() {
         mobileMenu.innerHTML = `
             <div class="mobile-menu-header">
                 <div class="logo">
-                    <img src="img/logorev.png" alt="AY Productions Logo">
                 </div>
                 <div class="menu-close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="x-icon">
@@ -202,4 +202,102 @@ function hideMobileMenu() {
     } else {
         console.error('No mobile menu found to hide!');
     }
+}
+// Tambahkan kode ini di akhir file js/mobile/about.js atau dalam script di about.html
+
+window.addEventListener('resize', function() {
+    const isMobile = window.innerWidth <= 767;
+    
+    // Toggle class mobile-view berdasarkan ukuran layar
+    if (isMobile) {
+        document.body.classList.add('mobile-view');
+        
+        // Tampilkan header mobile jika tidak ada
+        if (!document.querySelector('.mobile-header')) {
+            createMobileHeader();
+        }
+        
+        // Sembunyikan header desktop
+        const desktopHeader = document.querySelector('header');
+        if (desktopHeader) {
+            desktopHeader.style.display = 'none';
+        }
+        
+        // Sembunyikan footer
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.style.display = 'none';
+        }
+    } else {
+        document.body.classList.remove('mobile-view');
+        
+        // Sembunyikan header mobile
+        const mobileHeader = document.querySelector('.mobile-header');
+        if (mobileHeader) {
+            mobileHeader.style.display = 'none';
+        }
+        
+        // Sembunyikan menu overlay jika masih terbuka
+        const mobileMenu = document.querySelector('.mobile-menu-overlay');
+        if (mobileMenu) {
+            mobileMenu.style.display = 'none';
+        }
+        
+        // Tampilkan kembali header desktop
+        const desktopHeader = document.querySelector('header');
+        if (desktopHeader) {
+            desktopHeader.style.display = 'block';
+        }
+        
+        // Tampilkan kembali footer
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.style.display = 'block';
+        }
+    }
+});
+
+// Function untuk membuat header mobile
+function createMobileHeader() {
+    const mobileHeader = document.createElement('div');
+    mobileHeader.className = 'mobile-header';
+    mobileHeader.innerHTML = `
+        <div class="logo">
+            <img src="img/logorev.png" alt="AY Productions Logo">
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+    
+    // Tambahkan header ke body
+    document.body.insertBefore(mobileHeader, document.body.firstChild);
+    
+    // Event listener untuk menu toggle
+    const menuToggle = mobileHeader.querySelector('.menu-toggle');
+    menuToggle.addEventListener('click', function() {
+        let mobileMenu = document.querySelector('.mobile-menu-overlay');
+        
+        if (!mobileMenu) {
+            showMobileMenu();
+        } else {
+            if (mobileMenu.style.display === 'none') {
+                mobileMenu.style.display = 'flex';
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo(mobileMenu, 
+                        { opacity: 0, y: -20 },
+                        { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+                    );
+                } else {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                }
+            } else {
+                showMobileMenu();
+            }
+        }
+    });
+    
 }
