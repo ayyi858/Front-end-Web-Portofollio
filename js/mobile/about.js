@@ -129,9 +129,9 @@ function showMobileMenu() {
             <div class="mobile-links-section">
                 <h3 class="mobile-links-title">Links</h3>
                 <div class="social-links">
-                    <a href="https://github.com/" target="_blank">Github</a>
-                    <a href="https://linkedin.com/" target="_blank">Linkedin</a>
-                    <a href="https://instagram.com/" target="_blank">Instagram</a>
+                    <a href="https://github.com/ayyi858" target="_blank">Github</a>
+                    <a href="https://www.linkedin.com/in/ahmad-syarif-hidayatullah-584550332/" target="_blank">Linkedin</a>
+                    <a href="https://www.instagram.com/asyarif_hidayatullah/" target="_blank">Instagram</a>
                     <a href="mailto:contact@example.com">Email</a>
                 </div>
             </div>

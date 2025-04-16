@@ -1,0 +1,327 @@
+/* CSS untuk portfolio mobile dengan animasi navigasi smooth */
+:root {
+    --primary-color: #091538; /* Biru navy gelap */
+    --accent-color: #c1a71a; /* Warna emas */
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --dark-gray: #333333;
+    --border-radius: 30px;
+}
+
+/* Mobile view aktivasi */
+body.mobile-view .mobile-container {
+    display: block;
+}
+
+body.mobile-view nav:not(.mobile-header),
+body.mobile-view .hero, 
+body.mobile-view .skills-bar {
+    display: none;
+}
+
+/* Header styling */
+.mobile-header {
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.mobile-header .logo {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.mobile-header .logo img {
+    height: 30px;
+}
+
+/* Menu toggle styling dan animasi */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1002; /* Pastikan menu toggle berada di atas overlay */
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi untuk transformasi hamburger menjadi X */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Transisi untuk overlay menu mobile - dari kanan ke kiri */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0; /* Posisi dari kanan */
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    z-index: 1000;
+    display: none; /* PERBAIKAN: Gunakan display none secara default */
+    flex-direction: column;
+    padding: 60px 0 0 0;
+    transform: translateX(100%); /* Mulai dari luar kanan layar */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; /* Animasi smooth dengan cubic-bezier */
+    opacity: 0;
+}
+
+.mobile-menu-overlay.active {
+    transform: translateX(0); /* Posisi normal saat aktif */
+    display: flex;
+    opacity: 1;
+}
+
+.mobile-menu-header {
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+}
+
+.mobile-menu-title {
+    color: var(--white);
+    font-size: 38px;
+    font-weight: 700;
+    margin: 20px 0 50px 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    transition-delay: 0.2s;
+}
+
+.mobile-menu-overlay.active .mobile-menu-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0 0 0 30px;
+    margin: 0;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.3s ease;
+    transition-delay: calc(0.1s * var(--i));
+}
+
+.mobile-menu-overlay.active .mobile-nav-links li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 38px;
+    font-weight: 600;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links a.active,
+.mobile-nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.mobile-links-section {
+    margin-top: auto;
+    padding: 20px 0 50px 30px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    transition-delay: 0.4s;
+}
+
+.mobile-menu-overlay.active .mobile-links-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-links-title {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.mobile-links-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 1px;
+    background-color: var(--white);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Menu close button */
+.menu-close {
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.x-icon {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+/* Tambahkan ini untuk mencegah scroll saat menu terbuka */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Portfolio styling untuk mobile */
+@media (max-width: 767px) {
+    /* PERBAIKAN: Tampilkan mobile header hanya di mobile */
+    .mobile-header {
+        display: flex;
+    }
+    
+    /* Sembunyikan header dan hero */
+    header:not(.mobile-header), .hero {
+        display: none !important;
+    }
+    
+    /* Atur portfolio main */
+    .portfolio-main {
+        padding-top: 20px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Sesuaikan grid portfolio untuk mobile */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    /* Style portfolio items */
+    .portfolio-item {
+        background-color: #0d2252;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .item-image {
+        height: 120px;
+    }
+    
+    .item-info {
+        padding: 15px;
+    }
+    
+    .item-info h4 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .item-info p {
+        font-size: 0.75rem;
+        max-height: 80px;
+        overflow: hidden;
+    }
+    
+    .view-btn {
+        display: inline-block;
+        padding: 5px 15px;
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Sembunyikan footer di mobile */
+    footer {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller screens */
+    .mobile-nav-links a {
+        font-size: 32px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .item-image {
+        height: 100px;
+    }
+    
+    .item-info p {
+        font-size: 0.7rem;
+        max-height: 70px;
+    }
+    
+    .view-btn {
+        padding: 4px 14px;
+        font-size: 0.8rem;
+    }
+}
+
+/* PERBAIKAN: Pastikan desktop tidak terganggu */
+@media (min-width: 768px) {
+    .mobile-header {
+        display: none !important;
+    }
+    
+    .mobile-menu-overlay {
+        display: none !important;
+    }
+}

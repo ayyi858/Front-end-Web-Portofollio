@@ -39,12 +39,13 @@
         <h1 data-aos="fade-up">Contact</h1>
     </section>
 
-    <section class="contact-section" id ="contact">
+    <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-heading" data-aos="fade-up">
                 <h2><span class="gold-text">Contact</span> Me</h2>
             </div>
 
+            <!-- GitHub section updated -->
             <div class="github-section">
                 <h3 data-aos="fade-right">My recents Github</h3>
                 <div class="github-card" data-aos="fade-up" data-aos-delay="200">
@@ -52,7 +53,9 @@
                         <img src="img/profil.png" alt="GitHub Profile" class="profile-img">
                         <div class="profile-info">
                             <p>Coding with</p>
-                            <p class="username">ayyi858</p>
+                            <a href="https://github.com/ayyi858" target="_blank" class="username-link">
+                                <p class="username">ayyi858</p>
+                            </a>
                             <p>I</p>
                             <p>memb online</p>
                             <div class="status-icons">
@@ -65,29 +68,17 @@
                     <div class="github-contributions">
                         <div class="contribution-grid">
                             <div class="months">
-                                <span>Mar</span>
-                                <span>Apr</span>
-                                <span>May</span>
-                                <span>Jun</span>
-                                <span>Jul</span>
-                                <span>Aug</span>
-                                <span>Sep</span>
-                                <span>Oct</span>
-                                <span>Nov</span>
-                                <span>Dec</span>
-                                <span>Jan</span>
-                                <span>Feb</span>
+                                <!-- Months will be populated by JavaScript -->
                             </div>
+                            <div class="contribution-count">223 contributions in the last year</div>
                             <div class="days">
-                                <span>Tue</span>
-                                <span>Thu</span>
-                                <span>Sat</span>
+                                <!-- Days will be populated by JavaScript -->
                             </div>
                             <div class="grid-container">
                                 <!-- GitHub contribution grid cells -->
                                 <table class="contribution-table">
                                     <tbody>
-                                        <!-- 3 rows for Tue, Thu, Sat -->
+                                        <!-- 3 rows for Mon, Wed, Fri -->
                                         <tr class="contribution-row"></tr>
                                         <tr class="contribution-row"></tr>
                                         <tr class="contribution-row"></tr>
@@ -95,17 +86,14 @@
                                 </table>
                             </div>
                             <div class="contribution-info">
-                                <span>989 contributions in the last half year</span>
-                                <div class="contribution-scale">
-                                    <span>Less</span>
-                                    <div class="scale-boxes">
-                                        <div class="scale-box level-1"></div>
-                                        <div class="scale-box level-2"></div>
-                                        <div class="scale-box level-3"></div>
-                                        <div class="scale-box level-4"></div>
-                                    </div>
-                                    <span>More</span>
+                                <span>Less</span>
+                                <div class="scale-boxes">
+                                    <div class="scale-box level-1"></div>
+                                    <div class="scale-box level-2"></div>
+                                    <div class="scale-box level-3"></div>
+                                    <div class="scale-box level-4"></div>
                                 </div>
+                                <span>More</span>
                             </div>
                         </div>
                     </div>
@@ -156,16 +144,16 @@
                     <div class="social-column">
                         <h3>Social Media</h3>
                         <div class="social-icons">
-                            <a href="https://instagram.com/yourusername" class="social-icon" target="_blank">
+                            <a href="https://www.instagram.com/asyarif_hidayatullah/" class="social-icon" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://linkedin.com/in/yourusername" class="social-icon" target="_blank">
+                            <a href="https://www.linkedin.com/in/ahmad-syarif-hidayatullah-584550332/" class="social-icon" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://wa.me/yourphonenumber" class="social-icon" target="_blank">
+                            <a href="https://wa.me/+6281256961784" class="social-icon" target="_blank">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
-                            <a href="https://behance.net/yourusername" class="social-icon" target="_blank">
+                            <a href="https://www.behance.net/syarifayi" class="social-icon" target="_blank">
                                 <i class="fab fa-behance"></i>
                             </a>
                         </div>
@@ -188,58 +176,241 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
-        // Inisialisasi Library AOS
-        AOS.init({
-            duration: 1000,
-            once: false,
-            mirror: true
-        });
-    
         document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi Library AOS
+            AOS.init({
+                duration: 1000,
+                once: false,
+                mirror: true
+            });
+
             // Generate GitHub contribution grid
             const tableRows = document.querySelectorAll('.contribution-row');
+            const monthsDiv = document.querySelector('.months');
+            const daysDiv = document.querySelector('.days');
             
-            // Generate cells for each row
-            tableRows.forEach(row => {
-                // Create 52 weeks (columns) of contribution cells
-                for (let i = 0; i < 52; i++) {
-                    const cell = document.createElement('td');
-                    
-                    // Random level (for demonstration)
-                    const level = Math.floor(Math.random() * 5); // 0-4
-                    
-                    if (level === 1) {
-                        cell.classList.add('level-1');
-                    } else if (level === 2) {
-                        cell.classList.add('level-2');
-                    } else if (level === 3) {
-                        cell.classList.add('level-3');
-                    } else if (level === 4) {
-                        cell.classList.add('level-4');
-                    }
-                    
-                    row.appendChild(cell);
-                }
-            });
-            
-            // Animasi untuk form dan tombol
-            const sendButton = document.querySelector('.send-button');
-            if (sendButton) {
-                sendButton.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                });
-                
-                sendButton.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
+            // Update months display to match the screenshot (Apr to Apr)
+            if (monthsDiv) {
+                monthsDiv.innerHTML = ''; // Clear existing months
+                const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+                months.forEach(month => {
+                    const span = document.createElement('span');
+                    span.textContent = month;
+                    monthsDiv.appendChild(span);
                 });
             }
             
-            // Animasi untuk GitHub card
+            // Update days to match screenshot (Mon, Wed, Fri)
+            if (daysDiv) {
+                daysDiv.innerHTML = ''; // Clear existing days
+                const days = ['Mon', 'Wed', 'Fri'];
+                days.forEach(day => {
+                    const span = document.createElement('span');
+                    span.textContent = day;
+                    daysDiv.appendChild(span);
+                });
+            }
+            
+            // Clear existing rows
+            tableRows.forEach(row => {
+                row.innerHTML = '';
+            });
+            
+            // Create contribution pattern similar to the screenshot
+            // This will create a pattern that resembles the image but uses your existing color scheme
+            
+            // Create a pattern map where:
+            // 0 = no contribution
+            // 1-4 = different levels of contribution (keeping your color scheme)
+            
+            // Example pattern for the 3 rows matching screenshot (simplified)
+            const patterns = [
+                // Mon row - more active in recent months
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,0,2,0,3,0,0,3,0,0,3,0,2],
+                // Wed row - medium activity
+                [0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,3,0,0,0,2,0,0,0,0,2,0,0,0,3],
+                // Fri row - scattered activity
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,2,0,0,0,0,3,0,0,0,2,2,0,0,0,0,0,0,0,0,3,2]
+            ];
+            
+            // Array untuk menyimpan semua cell dengan level > 0
+            let activeCells = [];
+            
+            // Apply the patterns to the rows with staggered animation delays
+            tableRows.forEach((row, rowIndex) => {
+                if (rowIndex < patterns.length) {
+                    const pattern = patterns[rowIndex];
+                    
+                    // Create 52 cells (for a year of contributions)
+                    for (let i = 0; i < pattern.length; i++) {
+                        const cell = document.createElement('td');
+                        
+                        // Apply appropriate class based on pattern value
+                        const level = pattern[i];
+                        if (level > 0) {
+                            cell.classList.add(`level-${level}`);
+                            // Tambahkan ke array activeCells jika level > 0
+                            activeCells.push({
+                                cell: cell,
+                                level: level,
+                                row: rowIndex,
+                                col: i
+                            });
+                        }
+                        
+                        // Add animation delay for staggered effect
+                        cell.style.animationDelay = `${(rowIndex * 0.1) + (i * 0.01)}s`;
+                        
+                        // Add data attribute for tooltip or hover effect
+                        cell.setAttribute('data-count', level > 0 ? `${level * 3} contributions` : 'No contributions');
+                        
+                        // Add event listeners for interactive effects
+                        cell.addEventListener('mouseenter', function() {
+                            // Add pulse effect to neighboring cells
+                            if (i > 0) {
+                                const prevCell = row.children[i-1];
+                                prevCell.style.transform = 'scale(1.1)';
+                                setTimeout(() => {
+                                    prevCell.style.transform = '';
+                                }, 300);
+                            }
+                            if (i < row.children.length - 1) {
+                                const nextCell = row.children[i+1];
+                                setTimeout(() => {
+                                    nextCell.style.transform = 'scale(1.1)';
+                                    setTimeout(() => {
+                                        nextCell.style.transform = '';
+                                    }, 300);
+                                }, 150);
+                            }
+                        });
+                        
+                        row.appendChild(cell);
+                    }
+                }
+            });
+            
+            // Fungsi untuk mengacak animasi pada sel aktif secara periodik
+            function animateRandomCells() {
+                if (activeCells.length > 0) {
+                    // Acak 1-3 sel untuk dianimasikan
+                    const count = Math.floor(Math.random() * 3) + 1;
+                    for (let i = 0; i < count; i++) {
+                        // Pilih sel secara acak
+                        const randomIndex = Math.floor(Math.random() * activeCells.length);
+                        const cellData = activeCells[randomIndex];
+                        
+                        // Animasi sesuai level
+                        if (cellData.level >= 3) {
+                            // Animasi lebih dramatis untuk level tinggi
+                            cellData.cell.style.transform = 'scale(1.3)';
+                            cellData.cell.style.boxShadow = '0 0 8px rgba(46, 164, 79, 0.8)';
+                            cellData.cell.style.zIndex = '3';
+                            
+                            // Reset setelah animasi
+                            setTimeout(() => {
+                                cellData.cell.style.transform = '';
+                                cellData.cell.style.boxShadow = '';
+                                cellData.cell.style.zIndex = '';
+                            }, 700);
+                        } else {
+                            // Animasi sederhana untuk level rendah
+                            cellData.cell.style.transform = 'scale(1.2)';
+                            
+                            // Reset setelah animasi
+                            setTimeout(() => {
+                                cellData.cell.style.transform = '';
+                            }, 500);
+                        }
+                        
+                        // Animasi untuk sel tetangga jika level tinggi
+                        if (cellData.level >= 3) {
+                            // Cari sel tetangga dalam baris yang sama
+                            const row = tableRows[cellData.row];
+                            if (cellData.col > 0) {
+                                const prevCell = row.children[cellData.col - 1];
+                                setTimeout(() => {
+                                    prevCell.style.transform = 'scale(1.1)';
+                                    setTimeout(() => {
+                                        prevCell.style.transform = '';
+                                    }, 300);
+                                }, 100);
+                            }
+                            if (cellData.col < row.children.length - 1) {
+                                const nextCell = row.children[cellData.col + 1];
+                                setTimeout(() => {
+                                    nextCell.style.transform = 'scale(1.1)';
+                                    setTimeout(() => {
+                                        nextCell.style.transform = '';
+                                    }, 300);
+                                }, 200);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Jalankan animasi acak setiap 3 detik
+            setInterval(animateRandomCells, 3000);
+            
+            // Fungsi untuk animasi "wave" pada contribution grid
+            function animateContributionWave() {
+                const allCells = document.querySelectorAll('.contribution-row td');
+                if (allCells.length > 0) {
+                    // Buat efek wave dari kiri ke kanan
+                    for (let i = 0; i < allCells.length; i++) {
+                        setTimeout(() => {
+                            allCells[i].style.opacity = '0.7';
+                            setTimeout(() => {
+                                allCells[i].style.opacity = '';
+                            }, 300);
+                        }, i * 20);
+                    }
+                }
+            }
+            
+            // Jalankan animasi wave setiap 10 detik
+            setInterval(animateContributionWave, 10000);
+            
+            // Fungsi untuk animasi pulse pada level tinggi secara periodik
+            function animateHighLevelCells() {
+                const highLevelCells = document.querySelectorAll('.level-3, .level-4');
+                if (highLevelCells.length > 0) {
+                    // Animasi berurutan untuk semua sel level tinggi
+                    highLevelCells.forEach((cell, index) => {
+                        setTimeout(() => {
+                            cell.style.transform = 'scale(1.2)';
+                            cell.style.boxShadow = '0 0 5px rgba(46, 164, 79, 0.5)';
+                            
+                            setTimeout(() => {
+                                cell.style.transform = '';
+                                cell.style.boxShadow = '';
+                            }, 400);
+                        }, index * 100);
+                    });
+                }
+            }
+            
+            // Jalankan animasi highlight setiap 7 detik
+            setInterval(animateHighLevelCells, 7000);
+            
+            // Efek interaktif untuk GitHub card
             const githubCard = document.querySelector('.github-card');
             if (githubCard) {
                 githubCard.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-5px)';
                     this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                    
+                    // Animate all level-3 and level-4 cells when card is hovered
+                    const highLevelCells = document.querySelectorAll('.level-3, .level-4');
+                    highLevelCells.forEach((cell, index) => {
+                        setTimeout(() => {
+                            cell.style.transform = 'scale(1.2)';
+                            setTimeout(() => {
+                                cell.style.transform = '';
+                            }, 300);
+                        }, index * 50);
+                    });
                 });
                 
                 githubCard.addEventListener('mouseleave', function() {
@@ -248,22 +419,11 @@
                 });
             }
             
-            // Animasi border pada profil GitHub
-            const profileImage = document.querySelector('.profile-img');
-            if (profileImage) {
-                setInterval(() => {
-                    profileImage.style.borderColor = '#f5d147';
-                    setTimeout(() => {
-                        profileImage.style.borderColor = '#a38808';
-                    }, 1500);
-                }, 3000);
-            }
-
-            // Inisialisasi Particles.js (seperti pada home.html)
+            // Inisialisasi Particles.js
             initParticles();
         });
 
-        // Fungsi untuk inisialisasi Particles.js (dari home.html)
+        // Fungsi untuk inisialisasi Particles.js
         function initParticles() {
             particlesJS("particles-js", {
                 "particles": {
