@@ -1,4 +1,4 @@
-/* Mobile Layout Styles */
+/* Mobile Layout Styles - FINAL Version */
 :root {
     --primary-color: #091538; /* Biru navy gelap */
     --accent-color: #c1a71a; /* Warna emas */
@@ -8,6 +8,14 @@
     --border-radius: 30px;
 }
 
+/* Fix untuk overflow pada transisi */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 /* Default state - mobile container tidak ditampilkan */
 .mobile-container {
     display: none;
@@ -15,13 +23,48 @@
 
 /* Mobile view aktivasi */
 body.mobile-view .mobile-container {
-    display: block;
+    display: block !important;
 }
 
 body.mobile-view nav:not(.mobile-header),
 body.mobile-view .hero, 
 body.mobile-view .skills-bar {
-    display: none;
+    display: none !important;
+}
+
+body:not(.mobile-view) .mobile-container {
+    display: none !important;
+}
+
+body:not(.mobile-view) .mobile-menu-overlay,
+body:not(.mobile-view) .menu-backdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Pastikan navigasi desktop tampil dengan benar */
+body:not(.mobile-view) nav:not(.mobile-header) {
+    display: flex !important;
+}
+
+body:not(.mobile-view) .hero {
+    display: flex !important;
+}
+
+body:not(.mobile-view) .skills-bar {
+    display: block !important;
+}
+
+/* Fix untuk particles background aktif di desktop dan mobile */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block !important; /* Selalu tampilkan background particles */
 }
 
 /* Styling untuk mobile */
@@ -47,6 +90,13 @@ body.mobile-view .skills-bar {
     position: sticky;
     top: 0;
     z-index: 5;
+    transition: opacity 0.3s ease;
+}
+
+/* Sembunyikan header mobile saat menu terbuka */
+body.menu-open .mobile-header {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-header .logo {
@@ -66,6 +116,11 @@ body.mobile-view .skills-bar {
     width: 30px;
     height: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
 }
 
 .menu-toggle span {
@@ -73,6 +128,15 @@ body.mobile-view .skills-bar {
     width: 100%;
     background-color: var(--white);
     border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover span {
+    width: 90%;
+}
+
+.menu-toggle:hover span:nth-child(2) {
+    width: 70%;
 }
 
 /* Content styling */
@@ -297,20 +361,81 @@ body.mobile-view .skills-bar {
     font-size: 18px;
 }
 
-/* Mobile Menu Overlay */
+/* Efek hover untuk tombol */
+.profile-section .btn-primary,
+.profile-section .btn-secondary,
+.btn-outline {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-section .btn-primary:hover,
+.profile-section .btn-secondary:hover,
+.btn-outline:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-section .btn-primary::before,
+.profile-section .btn-secondary::before,
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: 1;
+}
+
+.profile-section .btn-primary:hover::before,
+.profile-section .btn-secondary:hover::before,
+.btn-outline:hover::before {
+    left: 100%;
+}
+
+/* Mobile Menu Overlay - Dengan animasi slide dari kanan ke kiri dan ujung melengkung setengah lingkaran */
 .mobile-menu-overlay {
     position: fixed;
     top: 0;
-    left: 0;
+    right: -100%; /* Mulai dari luar layar kanan */
     width: 100%;
     height: 100%;
     background-color: var(--accent-color);
-    z-index: 1000;
+    z-index: 9999; /* Z-index tinggi */
     display: flex;
     flex-direction: column;
     padding: 60px 0 0 0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), right 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
+/* Kelas aktif untuk menu overlay */
+.mobile-menu-overlay.active {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Bentuk lengkung untuk overlay menu - setengah lingkaran di kiri */
+.mobile-menu-overlay::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    width: 50px;
+    height: 100px;
+    background: var(--accent-color);
+    border-radius: 50px 0 0 50px;
+    transform: translateY(-50%);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu Header - Di dalam overlay menu */
 .mobile-menu-header {
     background-color: var(--accent-color);
     display: flex;
@@ -319,18 +444,19 @@ body.mobile-view .skills-bar {
     padding: 15px 20px;
     position: fixed;
     top: 0;
-    left: 0;
+    right: -100%; /* Posisi awal dari luar layar, sama dengan menu */
     width: 100%;
-    z-index: 1001;
+    z-index: 10000; /* Z-index lebih tinggi dari menu content */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: right 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Animasi yang sama dengan menu */
 }
 
-.mobile-menu-title {
-    color: var(--white);
-    font-size: 38px;
-    font-weight: 700;
-    margin: 20px 0 50px 20px;
+/* Header mengikuti menu saat aktif */
+.mobile-menu-overlay.active .mobile-menu-header {
+    right: 0;
 }
 
+/* Menu Item dengan animasi slide dari kanan */
 .mobile-nav-links {
     list-style: none;
     padding: 0 0 0 30px;
@@ -339,6 +465,15 @@ body.mobile-view .skills-bar {
 
 .mobile-nav-links li {
     margin-bottom: 25px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: calc(0.1s * var(--item-index, 0));
+}
+
+.mobile-menu-overlay.active .mobile-nav-links li {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .mobile-nav-links a {
@@ -348,6 +483,7 @@ body.mobile-view .skills-bar {
     font-weight: 600;
     display: block;
     transition: color 0.3s ease;
+    position: relative;
 }
 
 .mobile-nav-links a.active,
@@ -355,9 +491,51 @@ body.mobile-view .skills-bar {
     color: var(--primary-color);
 }
 
+.mobile-nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.mobile-nav-links a:hover::after {
+    width: 50px;
+}
+
+/* Animasi untuk judul menu */
+.mobile-menu-title {
+    color: var(--white);
+    font-size: 38px;
+    font-weight: 700;
+    margin: 20px 0 50px 20px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: 0.05s;
+}
+
+.mobile-menu-overlay.active .mobile-menu-title {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animasi untuk links section */
 .mobile-links-section {
     margin-top: auto;
     padding: 20px 0 50px 30px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: 0.4s;
+}
+
+.mobile-menu-overlay.active .mobile-links-section {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .mobile-links-title {
@@ -373,11 +551,43 @@ body.mobile-view .skills-bar {
     position: absolute;
     left: 0;
     bottom: -10px;
-    width: 100%;
+    width: 0; /* Dimulai dengan width 0 */
     height: 1px;
     background-color: var(--white);
+    transition: width 0.6s ease;
+    transition-delay: 0.6s;
 }
 
+.mobile-menu-overlay.active .mobile-links-title::after {
+    width: 100%;
+}
+
+/* Tombol close dengan hover effect */
+.menu-close {
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.x-icon {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    transition: transform 0.3s ease;
+}
+
+/* Sosial links animasi */
 .social-links {
     display: flex;
     gap: 20px;
@@ -388,24 +598,52 @@ body.mobile-view .skills-bar {
     color: var(--white);
     text-decoration: none;
     font-size: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
 }
 
-/* Menu close button */
-.menu-close {
-    cursor: pointer;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.mobile-menu-overlay.active .social-links a {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.x-icon {
-    width: 24px;
-    height: 24px;
-    stroke: white;
+.mobile-menu-overlay.active .social-links a:nth-child(1) {
+    transition-delay: 0.5s;
 }
 
-/* Typing Cursor Style - DIREVISI */
+.mobile-menu-overlay.active .social-links a:nth-child(2) {
+    transition-delay: 0.6s;
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(3) {
+    transition-delay: 0.7s;
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(4) {
+    transition-delay: 0.8s;
+}
+
+/* Animasi untuk backdrop */
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998; /* Z-index di bawah menu tapi di atas konten lain */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Typing Cursor Style - Perbaikan */
 .typed-cursor {
     color: var(--accent-color);
     font-size: 30px;
@@ -415,6 +653,15 @@ body.mobile-view .skills-bar {
     display: inline-block;
     vertical-align: baseline;
     margin-left: 2px;
+}
+
+/* Pastikan kursor pada desktop dan mobile memiliki ukuran yang sesuai */
+body:not(.mobile-view) .typed-cursor {
+    font-size: 36px !important;
+}
+
+body.mobile-view .typed-cursor {
+    font-size: 26px !important;
 }
 
 @keyframes blink {
@@ -435,10 +682,17 @@ body.mobile-view .skills-bar {
     }
     
     .mobile-container {
-        display: block;
+        display: block !important;
         max-width: 100%;
         border-radius: 0;
         box-shadow: none;
+    }
+    
+    /* Fix untuk viewport pada mobile */
+    html, body {
+        height: 100%;
+        width: 100vw;
+        overflow-x: hidden;
     }
 }
 
@@ -449,7 +703,7 @@ body.mobile-view .skills-bar {
     
     /* Responsif untuk ukuran font */
     .im-text, .name-highlight, .typed-cursor {
-        font-size: 26px;
+        font-size: 26px !important;
     }
     
     .profile-section .title {
@@ -474,5 +728,34 @@ body.mobile-view .skills-bar {
     .about-heading {
         font-size: 28px;
     }
+    
+    /* Menu responsif pada layar sangat kecil */
+    .mobile-menu-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .mobile-nav-links a {
+        font-size: 28px;
+    }
+    
+    .mobile-nav-links li {
+        margin-bottom: 18px;
+    }
 }
 
+/* Fix untuk iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu-overlay,
+    .menu-backdrop {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    html, body {
+        height: -webkit-fill-available;
+    }
+    
+    .mobile-container {
+        height: -webkit-fill-available;
+    }
+}
