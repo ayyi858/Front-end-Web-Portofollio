@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Deteksi apakah perangkat mobile
     const isMobile = window.innerWidth <= 767;
     
-    // Inisialisasi particles.js terlebih dahulu
-    // Ini memastikan particles.js diaktifkan untuk semua tampilan sebelum manipulasi DOM lainnya
-    initParticles();
+    // Reset dan reinisialisasi particles secara total
+    resetAndInitParticles();
     
     // Set tampilan yang benar saat halaman dimuat
     if (isMobile) {
@@ -73,19 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Pastikan particles.js container memiliki visibilitas dan posisi yang benar
-    const particlesContainer = document.getElementById('particles-js');
-    if (particlesContainer) {
-        particlesContainer.style.position = 'fixed';
-        particlesContainer.style.top = '0';
-        particlesContainer.style.left = '0';
-        particlesContainer.style.width = '100%';
-        particlesContainer.style.height = '100%';
-        particlesContainer.style.zIndex = '-1';
-        particlesContainer.style.display = 'block';
-        particlesContainer.style.pointerEvents = 'none'; // Pastikan particles tidak menghalangi interaksi
-    }
-    
     // Set z-index yang benar untuk container terkait pada tampilan mobile
     if (isMobile) {
         const mobileContainer = document.querySelector('.mobile-container');
@@ -97,6 +83,142 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// Solusi radikal: Hapus dan buat ulang elemen particles-js
+function resetAndInitParticles() {
+    console.log("Menjalankan reset dan inisialisasi ulang particles.js");
+    
+    // 1. Cari elemen particles-js yang ada
+    let particlesContainer = document.getElementById('particles-js');
+    
+    // 2. Hapus elemen lama jika ada
+    if (particlesContainer) {
+        const parentElement = particlesContainer.parentNode;
+        particlesContainer.remove();
+        
+        // 3. Buat elemen baru
+        particlesContainer = document.createElement('div');
+        particlesContainer.id = 'particles-js';
+        
+        // 4. Atur properti style yang diperlukan
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.zIndex = '-1';
+        particlesContainer.style.display = 'block';
+        particlesContainer.style.visibility = 'visible';
+        particlesContainer.style.pointerEvents = 'none';
+        
+        // 5. Tambahkan kembali ke DOM
+        parentElement.appendChild(particlesContainer);
+    }
+    
+    // 6. Hapus instance particles.js yang mungkin sudah ada
+    if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom = [];
+    }
+    
+    // 7. Pastikan library particles.js sudah dimuat
+    if (typeof particlesJS === 'undefined') {
+        console.error("Library particles.js tidak ditemukan");
+        return;
+    }
+    
+    // 8. Inisialisasi dengan konfigurasi
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 50,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#c1a71a"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                }
+            },
+            "opacity": {
+                "value": 0.3,
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 2,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#c1a71a",
+                "opacity": 0.2,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 1,
+                "direction": "none",
+                "random": true,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": true,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "bubble"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "bubble": {
+                    "distance": 150,
+                    "size": 6,
+                    "duration": 2,
+                    "opacity": 0.8,
+                    "speed": 3
+                },
+                "push": {
+                    "particles_nb": 4
+                }
+            }
+        },
+        "retina_detect": true
+    });
+    
+    console.log("Inisialisasi particles.js selesai");
+}
 
 // Fungsi untuk setup typing effect desktop
 function setupTypingEffect() {
@@ -175,7 +297,7 @@ function setupMobileTyped() {
     }
 }
 
-// Fungsi untuk menampilkan menu mobile dengan animasi dari kanan ke kiri
+// Fungsi untuk menampilkan menu mobile dengan animasi dari kanan ke kiri dengan efek lengkung
 function showMobileMenu() {
     // Cek apakah menu backdrop sudah ada
     let menuBackdrop = document.querySelector('.menu-backdrop');
@@ -240,16 +362,24 @@ function showMobileMenu() {
         mobileMenu.style.display = 'flex';
     }
     
-    // Gunakan GSAP untuk animasi slide yang smooth dari kanan ke kiri dengan ujung melengkung
+    // Tambahkan class untuk efek lengkung saat animasi masuk
+    mobileMenu.classList.add('animation-curve');
+    
+    // Gunakan GSAP untuk animasi slide yang lebih cepat
     gsap.fromTo(mobileMenu, 
         { right: "-100%", display: "flex" },
         { 
             right: "0%", 
-            duration: 0.6, 
-            ease: "power3.out",
+            duration: 0.4,
+            ease: "power2.out",
             onComplete: function() {
                 // Tambahkan kelas active untuk trigger animasi anak elemen
                 mobileMenu.classList.add('active');
+                
+                // Hapus efek lengkung setelah animasi masuk selesai
+                setTimeout(() => {
+                    mobileMenu.classList.remove('animation-curve');
+                }, 50);
             }
         }
     );
@@ -264,6 +394,9 @@ function hideMobileMenu() {
         // Hapus kelas active untuk mengembalikan animasi anak elemen
         mobileMenu.classList.remove('active');
         
+        // Tambahkan class untuk efek lengkung saat animasi keluar
+        mobileMenu.classList.add('animation-curve');
+        
         // Hapus class menu-open dari body untuk menampilkan header mobile kembali
         document.body.classList.remove('menu-open');
         
@@ -274,150 +407,35 @@ function hideMobileMenu() {
             // Delay untuk menghilangkan backdrop
             setTimeout(() => {
                 menuBackdrop.style.visibility = 'hidden';
-            }, 300);
+            }, 200);
         }
         
         // Beri sedikit delay sebelum animasi slide keluar
         setTimeout(() => {
             gsap.to(mobileMenu, {
                 right: "-100%",
-                duration: 0.6,
-                ease: "power3.in",
+                duration: 0.3,
+                ease: "power2.in",
                 onComplete: function() {
                     // Jika sudah di mode desktop, sembunyikan menu
                     if (!document.body.classList.contains('mobile-view')) {
                         mobileMenu.style.display = 'none';
                     }
+                    
+                    // Hapus efek lengkung setelah animasi keluar selesai
+                    mobileMenu.classList.remove('animation-curve');
                 }
             });
-        }, 200);
+        }, 100);
     }
 }
 
-// Inisialisasi Particles.js untuk desktop dan mobile (konfigurasi sama)
-function initParticles() {
-    if (typeof particlesJS !== 'undefined') {
-        // Pastikan elemen particles-js ada dalam DOM
-        const particlesContainer = document.getElementById('particles-js');
-        if (!particlesContainer) {
-            console.warn("Elemen particles-js tidak ditemukan dalam DOM");
-            return;
-        }
-        
-        // Pastikan elemen particles-js terlihat dengan benar
-        particlesContainer.style.display = 'block';
-        particlesContainer.style.position = 'fixed';
-        particlesContainer.style.top = '0';
-        particlesContainer.style.left = '0';
-        particlesContainer.style.width = '100%';
-        particlesContainer.style.height = '100%';
-        particlesContainer.style.zIndex = '-1';
-        particlesContainer.style.pointerEvents = 'none';
-        
-        // Hapus instance yang ada jika sudah ada untuk mencegah duplikasi
-        if (window.pJSDom && window.pJSDom.length > 0) {
-            // Reset particles instance
-            window.pJSDom = [];
-        }
-        
-        // Inisialisasi particles.js dengan konfigurasi yang ada
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 50,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#c1a71a"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    }
-                },
-                "opacity": {
-                    "value": 0.3,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 2,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#c1a71a",
-                    "opacity": 0.2,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": true,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "bubble"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "bubble": {
-                        "distance": 150,
-                        "size": 6,
-                        "duration": 2,
-                        "opacity": 0.8,
-                        "speed": 3
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-    } else {
-        console.warn("Particles.js tidak ditemukan");
-    }
-}
-
-// Perbaikan event listener untuk resize window dengan perhatian khusus pada bug saat beralih tampilan
+// Perbaikan event listener untuk resize window dengan pendekatan radikal
 window.addEventListener('resize', function() {
     const isMobile = window.innerWidth <= 767;
+    
+    // PENTING: Reset dan inisialisasi ulang particles untuk setiap perubahan ukuran
+    resetAndInitParticles();
     
     if (isMobile) {
         if (!document.body.classList.contains('mobile-view')) {
@@ -443,18 +461,6 @@ window.addEventListener('resize', function() {
             if (!window.mobileTypedInstance || 
                 (window.mobileTypedInstance && typeof window.mobileTypedInstance.isDestroyed !== 'undefined' && window.mobileTypedInstance.isDestroyed)) {
                 setupMobileTyped();
-            }
-            
-            // Pastikan particles.js masih aktif setelah beralih ke mobile
-            const particlesContainer = document.getElementById('particles-js');
-            if (particlesContainer) {
-                particlesContainer.style.display = 'block';
-                particlesContainer.style.zIndex = '-1';
-                
-                // Reinisialisasi particles ketika beralih ke mobile
-                setTimeout(() => {
-                    initParticles();
-                }, 300);
             }
         }
     } else {
@@ -506,17 +512,6 @@ window.addEventListener('resize', function() {
                 menuBackdrop.style.visibility = 'hidden';
                 menuBackdrop.style.opacity = '0';
             }
-            
-            // Pastikan particles.js masih aktif setelah beralih ke desktop
-            const particlesContainer = document.getElementById('particles-js');
-            if (particlesContainer) {
-                particlesContainer.style.display = 'block';
-            }
-            
-            // Reinisialisasi particles untuk desktop dengan delay
-            setTimeout(() => {
-                initParticles();
-            }, 300);
         }
     }
 });
@@ -527,3 +522,4 @@ document.addEventListener('keydown', function(e) {
         hideMobileMenu();
     }
 });
+
