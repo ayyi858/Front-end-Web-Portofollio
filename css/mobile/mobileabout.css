@@ -1,11 +1,9 @@
-/* CSS untuk Mobile About dengan tampilan baru sesuai gambar - menggunakan navigasi dari home.html */
+/* CSS untuk Mobile About dengan tampilan yang diperbaiki - tanpa konflik */
 
-/* Import style navigasi dari mobilehome.css */
-@import url('../mobile/mobilehome.css');
-
+/* Reset specificity hanya untuk mobile */
 @media (max-width: 767px) {
     /* Reset styling untuk desktop */
-    body {
+    body.mobile-view {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
@@ -14,13 +12,14 @@
         font-family: 'Poppins', sans-serif;
     }
     
-    /* Header style - sembunyikan header desktop */
-    header {
+    /* Header style - sembunyikan header desktop dengan specificity yang lebih tinggi */
+    body.mobile-view header.nav-container,
+    body.mobile-view header {
         display: none !important;
     }
     
     /* Tampilkan header mobile seperti di homepage */
-    .mobile-header {
+    body.mobile-view .mobile-header {
         display: flex !important;
         justify-content: space-between;
         align-items: center;
@@ -28,22 +27,23 @@
         background-color: #c1a71a; /* Warna emas */
         position: sticky;
         top: 0;
-        z-index: 10;
+        z-index: 1000; /* Pastikan selalu di atas elemen lain */
         width: 100%;
+        box-sizing: border-box;
     }
     
     /* Style untuk logo */
-    .mobile-header .logo {
+    body.mobile-view .mobile-header .logo {
         display: flex;
         align-items: center;
     }
     
-    .mobile-header .logo img {
+    body.mobile-view .mobile-header .logo img {
         height: 30px;
     }
     
     /* Style untuk hamburger menu */
-    .menu-toggle {
+    body.mobile-view .menu-toggle {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -52,41 +52,114 @@
         cursor: pointer;
     }
     
-    .menu-toggle span {
+    body.mobile-view .menu-toggle span {
         height: 3px;
         width: 100%;
         background-color: white;
         border-radius: 3px;
     }
     
-    /* Sembunyikan hero section */
-    .hero {
-        display: none;
+    /* Mobile menu overlay */
+    body.mobile-view .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000c24;
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
     }
     
-    /* Sembunyikan section title */
-    .section-title {
-        display: none;
+    body.mobile-view .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
     }
     
-    /* Sembunyikan tentang saya section */
-    .about-section {
-        display: none;
+    body.mobile-view .menu-close {
+        cursor: pointer;
+        color: white;
     }
     
-    /* Education & Work Section - style baru */
-    .edu-work-section {
+    body.mobile-view .mobile-menu-title {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: white;
+    }
+    
+    body.mobile-view .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+    
+    body.mobile-view .mobile-nav-links li {
+        margin-bottom: 15px;
+    }
+    
+    body.mobile-view .mobile-nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+    }
+    
+    body.mobile-view .mobile-nav-links a.active {
+        color: #c1a71a;
+    }
+    
+    body.mobile-view .mobile-links-title {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+    
+    body.mobile-view .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    body.mobile-view .social-links a {
+        color: white;
+        text-decoration: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Sembunyikan section yang tidak perlu ditampilkan di mobile dengan specificity yang lebih tinggi */
+    body.mobile-view .hero {
+        display: none !important;
+    }
+    
+    body.mobile-view .about-section {
+        display: none !important;
+    }
+    
+    /* Hapus section title asli dan ganti dengan versi mobile */
+    body.mobile-view .section-title {
+        display: none !important;
+    }
+    
+    /* Education & Work Section - style baru dengan specificity tinggi */
+    body.mobile-view .edu-work-section {
         padding: 20px 15px !important;
-        margin-top: 0;
+        margin-top: 20px !important;
     }
     
-    .journey-header {
+    body.mobile-view .journey-header {
         text-align: center;
         position: relative;
         padding-top: 15px;
     }
     
-    .journey-header::before {
+    body.mobile-view .journey-header::before {
         content: "-Education & Work";
         position: absolute;
         top: -10px;
@@ -96,18 +169,18 @@
         color: white;
     }
     
-    .journey-header h3 {
+    body.mobile-view .journey-header h3 {
         font-size: 1.5rem !important;
         margin-bottom: 10px !important;
         text-align: center;
     }
     
-    .journey-header h3 span {
+    body.mobile-view .journey-header h3 span {
         color: #c1a71a; /* Warna emas */
     }
     
-    /* Style untuk quote */
-    .quote {
+    /* Style untuk quote di mobile */
+    body.mobile-view .quote {
         border-left: none !important;
         padding-left: 0 !important;
         margin-left: 0 !important;
@@ -115,10 +188,9 @@
         text-align: center;
         margin-bottom: 20px !important;
         position: relative;
-        font-size: 0.8rem;
     }
     
-    .quote p {
+    body.mobile-view .quote p {
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
         color: #ffffff !important;
@@ -126,159 +198,158 @@
     }
     
     /* Style untuk subsection title */
-    .subsection-title, 
-    .subsection-title1 {
-        background-color: #001540;
-        color: white;
-        display: inline-block;
-        padding: 5px 15px;
-        border-radius: 20px;
-        border: 1px solid #c1a71a;
+    body.mobile-view .subsection-title, 
+    body.mobile-view .subsection-title1 {
+        background-color: transparent !important;
+        color: white !important;
+        display: inline-block !important;
+        padding: 5px 15px !important;
+        border-radius: 20px !important;
+        border: 1px solid #c1a71a !important;
         margin: 20px 0 15px 0 !important;
         font-size: 0.9rem !important;
         text-align: left !important;
     }
     
-    /* Education card baru */
-    .education-grid {
+    /* Education card baru dengan specificity tinggi */
+    body.mobile-view .education-grid {
         display: flex !important;
         flex-direction: column !important;
         gap: 10px !important;
     }
     
-    .edu-card {
+    body.mobile-view .edu-card {
         background-color: #132b65 !important; /* Warna biru lebih terang */
         border-radius: 10px !important;
         padding: 15px !important;
         display: flex !important;
-        align-items: center;
+        align-items: center !important;
+        transform: none !important; /* Override hover transform dari desktop */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+        margin-bottom: 10px !important;
     }
     
-    .edu-card:hover {
+    body.mobile-view .edu-card:hover {
         transform: none !important;
-        box-shadow: none !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
     }
     
-    .school-logo {
+    body.mobile-view .school-logo {
         width: 40px !important;
         height: 40px !important;
         margin-right: 15px !important;
         margin-bottom: 0 !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
     }
     
-    .school-logo img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
+    body.mobile-view .school-logo img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 5px !important;
     }
     
-    .edu-card h5 {
+    body.mobile-view .edu-content-wrapper {
+        flex: 1 !important;
+    }
+    
+    body.mobile-view .edu-card h5 {
         font-size: 0.9rem !important;
         margin-bottom: 5px !important;
         display: block !important;
     }
     
-    .edu-card .year {
+    body.mobile-view .edu-card .year {
         font-size: 0.75rem !important;
-        color: #a1a1a1;
-        font-weight: normal;
-        display: block;
+        color: #a1a1a1 !important;
+        font-weight: normal !important;
+        display: block !important;
     }
     
-    .edu-card p {
+    body.mobile-view .edu-card p {
         font-size: 0.8rem !important;
         line-height: 1.4 !important;
         margin-bottom: 0 !important;
+        color: #cccccc !important;
     }
     
-    /* Hapus styling timeline */
-    .timeline::before {
+    /* Hapus styling timeline untuk mobile */
+    body.mobile-view .timeline::before {
         display: none !important;
     }
     
-    .timeline-item .dot {
+    body.mobile-view .timeline-item .dot {
         display: none !important;
     }
     
-    /* Work experience cards */
-    .timeline-item {
+    /* Work experience cards dengan specificity tinggi */
+    body.mobile-view .timeline-item {
         margin-bottom: 10px !important;
     }
     
-    .timeline-item .content {
+    body.mobile-view .timeline-item .content {
         width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
         background-color: #132b65 !important;
         border-radius: 10px !important;
         padding: 15px !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
     }
     
-    .timeline-item .content:hover {
+    body.mobile-view .timeline-item .content:hover {
         transform: none !important;
-        box-shadow: none !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
     }
     
-    .timeline-item h5 {
+    body.mobile-view .timeline-item h5 {
         font-size: 0.9rem !important;
         margin-bottom: 5px !important;
     }
     
-    .timeline-item .year {
+    body.mobile-view .timeline-item .year {
         font-size: 0.75rem !important;
+        color: #a1a1a1 !important;
     }
     
-    .timeline-item p {
+    body.mobile-view .timeline-item p {
         font-size: 0.8rem !important;
         line-height: 1.4 !important;
         margin-bottom: 10px !important;
+        color: #cccccc !important;
     }
     
-    .timeline-item .company-logo {
+    body.mobile-view .timeline-item .company-logo {
         text-align: right !important;
     }
     
-    .timeline-item .company-logo img {
+    body.mobile-view .timeline-item .company-logo img {
         height: 30px !important;
     }
     
     /* Tombol My Skill di bagian bawah */
-    .my-skill-button {
-        display: block;
-        background-color: #c1a71a;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        margin: 20px auto;
-        width: 120px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-decoration: none;
+    body.mobile-view .my-skill-button {
+        display: block !important;
+        background-color: #c1a71a !important;
+        color: white !important;
+        text-align: center !important;
+        padding: 10px !important;
+        margin: 20px auto !important;
+        width: 120px !important;
+        border-radius: 20px !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        text-decoration: none !important;
+        box-shadow: 0 4px 10px rgba(193, 167, 26, 0.3) !important;
+        transition: all 0.3s ease !important;
     }
     
-    /* Style untuk logo AY Productions di atas */
-    .ay-logo {
-        position: fixed;
-        top: 0;
-        left: 15px;
-        display: flex;
-        align-items: center;
-        z-index: 20;
-    }
-    
-    .ay-logo img {
-        height: 30px;
-    }
-    
-    /* PENTING: Class skills-section tetap mengikuti style desktop original */
-    /* Lihat file mobileabout.css untuk reference */
-
-    /* Footer - sembunyikan di mobile */
-    footer {
-        display: none !important;
+    body.mobile-view .my-skill-button:hover,
+    body.mobile-view .my-skill-button:active {
+        background-color: #a38808 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 15px rgba(193, 167, 26, 0.4) !important;
     }
 }

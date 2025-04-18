@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Deteksi apakah perangkat mobile
     const isMobile = window.innerWidth <= 767;
     
+    // Inisialisasi particles.js terlebih dahulu
+    // Ini memastikan particles.js diaktifkan untuk semua tampilan sebelum manipulasi DOM lainnya
+    initParticles();
+    
     // Set tampilan yang benar saat halaman dimuat
     if (isMobile) {
         document.body.classList.add('mobile-view');
@@ -21,9 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Setup mobile typed
         setupMobileTyped();
-        
-        // Aktifkan particles.js di mobile
-        initParticles();
     } else {
         // Pastikan mobile view tidak aktif
         document.body.classList.remove('mobile-view');
@@ -45,9 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Setup desktop typed effect
         setupTypingEffect();
-        
-        // Aktifkan particles.js di desktop
-        initParticles();
     }
     
     // Setup toggle menu
@@ -73,6 +71,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    }
+    
+    // Pastikan particles.js container memiliki visibilitas dan posisi yang benar
+    const particlesContainer = document.getElementById('particles-js');
+    if (particlesContainer) {
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.zIndex = '-1';
+        particlesContainer.style.display = 'block';
+        particlesContainer.style.pointerEvents = 'none'; // Pastikan particles tidak menghalangi interaksi
+    }
+    
+    // Set z-index yang benar untuk container terkait pada tampilan mobile
+    if (isMobile) {
+        const mobileContainer = document.querySelector('.mobile-container');
+        if (mobileContainer) {
+            // Pastikan mobile container memiliki z-index lebih tinggi dari particles tapi tetap memungkinkan particles terlihat
+            mobileContainer.style.position = 'relative';
+            mobileContainer.style.zIndex = '0';
+            mobileContainer.style.background = 'transparent';
+        }
     }
 });
 
@@ -275,6 +297,30 @@ function hideMobileMenu() {
 // Inisialisasi Particles.js untuk desktop dan mobile (konfigurasi sama)
 function initParticles() {
     if (typeof particlesJS !== 'undefined') {
+        // Pastikan elemen particles-js ada dalam DOM
+        const particlesContainer = document.getElementById('particles-js');
+        if (!particlesContainer) {
+            console.warn("Elemen particles-js tidak ditemukan dalam DOM");
+            return;
+        }
+        
+        // Pastikan elemen particles-js terlihat dengan benar
+        particlesContainer.style.display = 'block';
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.zIndex = '-1';
+        particlesContainer.style.pointerEvents = 'none';
+        
+        // Hapus instance yang ada jika sudah ada untuk mencegah duplikasi
+        if (window.pJSDom && window.pJSDom.length > 0) {
+            // Reset particles instance
+            window.pJSDom = [];
+        }
+        
+        // Inisialisasi particles.js dengan konfigurasi yang ada
         particlesJS("particles-js", {
             "particles": {
                 "number": {
@@ -388,12 +434,27 @@ window.addEventListener('resize', function() {
             const mobileContainer = document.querySelector('.mobile-container');
             if (mobileContainer) {
                 mobileContainer.style.display = 'block';
+                mobileContainer.style.position = 'relative';
+                mobileContainer.style.zIndex = '0';
+                mobileContainer.style.background = 'transparent';
             }
             
             // Setup mobile typed jika belum aktif
             if (!window.mobileTypedInstance || 
                 (window.mobileTypedInstance && typeof window.mobileTypedInstance.isDestroyed !== 'undefined' && window.mobileTypedInstance.isDestroyed)) {
                 setupMobileTyped();
+            }
+            
+            // Pastikan particles.js masih aktif setelah beralih ke mobile
+            const particlesContainer = document.getElementById('particles-js');
+            if (particlesContainer) {
+                particlesContainer.style.display = 'block';
+                particlesContainer.style.zIndex = '-1';
+                
+                // Reinisialisasi particles ketika beralih ke mobile
+                setTimeout(() => {
+                    initParticles();
+                }, 300);
             }
         }
     } else {
@@ -444,6 +505,12 @@ window.addEventListener('resize', function() {
                 menuBackdrop.classList.remove('active');
                 menuBackdrop.style.visibility = 'hidden';
                 menuBackdrop.style.opacity = '0';
+            }
+            
+            // Pastikan particles.js masih aktif setelah beralih ke desktop
+            const particlesContainer = document.getElementById('particles-js');
+            if (particlesContainer) {
+                particlesContainer.style.display = 'block';
             }
             
             // Reinisialisasi particles untuk desktop dengan delay
