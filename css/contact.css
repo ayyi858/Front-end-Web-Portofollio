@@ -673,3 +673,508 @@ footer {
         gap: 30px;
     }
 }
+
+/* CSS Tambahan untuk animasi yang lebih keren pada Github section */
+
+/* Efek glow untuk cell contribution */
+.contribution-row td.level-2 {
+    position: relative;
+    overflow: hidden;
+    background-color: #9be9a8;
+    animation: popIn 0.5s forwards, softPulse 3s infinite alternate;
+}
+
+.contribution-row td.level-3 {
+    position: relative;
+    overflow: hidden;
+    background-color: #40c463;
+    animation: popIn 0.6s forwards, mediumPulse 4s infinite alternate;
+}
+
+.contribution-row td.level-4 {
+    position: relative;
+    overflow: hidden;
+    background-color: #2ea44f;
+    animation: popIn 0.7s forwards, strongPulse 5s infinite alternate;
+}
+
+/* Definisi animasi pulse untuk cell */
+@keyframes softPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(155, 233, 168, 0); }
+    100% { transform: scale(1.1); box-shadow: 0 0 5px rgba(155, 233, 168, 0.6); }
+}
+
+@keyframes mediumPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(64, 196, 99, 0); }
+    100% { transform: scale(1.15); box-shadow: 0 0 8px rgba(64, 196, 99, 0.7); }
+}
+
+@keyframes strongPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(46, 164, 79, 0); }
+    100% { transform: scale(1.2); box-shadow: 0 0 12px rgba(46, 164, 79, 0.8); }
+}
+
+/* Animasi untuk cell contribution */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Efek shine pada cells */
+.cell-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    animation: cell-shine 3s infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes cell-shine {
+    0% {
+        left: -100%;
+    }
+    20%, 100% {
+        left: 100%;
+    }
+}
+
+/* Efek glow pada hover */
+.contribution-row td:hover {
+    transform: scale(1.5) !important;
+    z-index: 10 !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.contribution-row td.level-2:hover {
+    box-shadow: 0 0 15px rgba(155, 233, 168, 0.8) !important;
+}
+
+.contribution-row td.level-3:hover {
+    box-shadow: 0 0 20px rgba(64, 196, 99, 0.9) !important;
+}
+
+.contribution-row td.level-4:hover {
+    box-shadow: 0 0 25px rgba(46, 164, 79, 1) !important;
+}
+
+/* Efek gelombang pada contribution rows */
+@keyframes rowWave {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.contribution-row:nth-child(1) {
+    animation: rowWave 3s ease-in-out infinite;
+}
+
+.contribution-row:nth-child(2) {
+    animation: rowWave 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.contribution-row:nth-child(3) {
+    animation: rowWave 5s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Efek 3D pada Github card */
+.github-card {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    background: linear-gradient(145deg, #ffffff, #f6f8fa);
+}
+
+.github-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animasi untuk profile image */
+.github-profile img.profile-img {
+    transition: all 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: profilePulse 4s infinite, profileRotate 10s infinite alternate;
+}
+
+@keyframes profilePulse {
+    0% { transform: scale(1); border-color: #a38808; }
+    50% { transform: scale(1.05); border-color: #f5d147; }
+    100% { transform: scale(1); border-color: #a38808; }
+}
+
+@keyframes profileRotate {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+.github-profile img.profile-img:hover {
+    animation: none;
+    transform: scale(1.1) rotate(10deg);
+    border-color: #f5d147;
+    box-shadow: 0 0 20px rgba(245, 209, 71, 0.5);
+}
+
+/* Efek bintang pada background */
+.github-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.github-star {
+    position: absolute;
+    background-color: rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: starFloat 6s infinite linear;
+}
+
+@keyframes starFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Efek glow pada header */
+.github-section h3 {
+    position: relative;
+    overflow: hidden;
+    animation: headerGlow 3s infinite alternate;
+}
+
+@keyframes headerGlow {
+    0% { box-shadow: 0 0 5px rgba(163, 136, 8, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(163, 136, 8, 0.8); }
+}
+
+.github-section h3::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: headerShine 3s infinite;
+}
+
+@keyframes headerShine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Indikator live untuk GitHub profile */
+.github-profile {
+    position: relative;
+}
+
+.github-profile::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background-color: #40c463;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #40c463;
+    animation: liveIndicator 2s infinite;
+}
+
+@keyframes liveIndicator {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Animasi untuk scale boxes */
+.scale-box {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.scale-box:hover {
+    transform: scale(1.4);
+    box-shadow: 0 0 10px rgba(46, 164, 79, 0.6);
+}
+
+/* Animasi untuk username */
+.username {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.username::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+    transition: all 0.6s;
+}
+
+.username:hover {
+    transform: translateY(-3px);
+    background-color: #0366d6;
+    color: white;
+    box-shadow: 0 4px 8px rgba(3, 102, 214, 0.3);
+}
+
+.username:hover::after {
+    left: 120%;
+}
+
+/* Animasi untuk contribution count */
+.contribution-count {
+    position: relative;
+    display: inline-block;
+    animation: countFade 1s ease-in;
+}
+
+@keyframes countFade {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animasi untuk ripple effect */
+@keyframes ripple-effect {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* Styling untuk tooltip */
+.cell-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .github-card {
+        transform: none !important;
+    }
+    
+    .contribution-row td {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .github-profile::before {
+        top: 5px;
+        right: 5px;
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Badge 3D Section */
+.badge-3d-section {
+    margin-bottom: 60px;
+}
+
+.badge-3d-section h3 {
+    background-color: #a38808;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    animation: headerGlow 3s infinite alternate;
+}
+
+.badge-3d-section h3::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: headerShine 3s infinite;
+}
+
+.badge-3d-container {
+    background: linear-gradient(145deg, #121f45, #0a1538);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    overflow: hidden;
+    position: relative;
+}
+
+.badge-3d-container:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.badge-3d-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(163, 136, 8, 0.1), transparent);
+    pointer-events: none;
+}
+
+.badge-3d-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#badge3d-canvas {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.badge-info {
+    width: calc(100% - 320px);
+    color: white;
+    padding: 20px;
+    border-left: 2px solid rgba(163, 136, 8, 0.5);
+}
+
+.badge-info h4 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.badge-info h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #a38808;
+    border-radius: 3px;
+}
+
+.badge-info p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.badge-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.badge-links a {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.badge-links a i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.badge-links a:hover {
+    background-color: #a38808;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .badge-3d-content {
+        flex-direction: column;
+    }
+    
+    #badge3d-canvas {
+        width: 100%;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    
+    .badge-info {
+        width: 100%;
+        border-left: none;
+        border-top: 2px solid rgba(163, 136, 8, 0.5);
+        padding-top: 20px;
+    }
+}

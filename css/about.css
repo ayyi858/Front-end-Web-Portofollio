@@ -223,20 +223,9 @@ nav ul li a.active {
     font-style: normal;
 }
 
-.subsection-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 25px;
-    margin-top: 40px;
-}
 
-.subsection-title1 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 25px;
-    margin-top: 40px;
-    text-align: right;
-}
+
+
 
 /* Education Grid */
 .education-grid {
@@ -775,5 +764,10 @@ footer {
         font-size: 1.2rem;
         padding: 10px 25px;
     }
+}
+
+.typed-cursor {
+    display: none !important;
+    opacity: 0 !important;
 }
 

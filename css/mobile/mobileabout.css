@@ -1,3 +1,4 @@
+
 /* CSS untuk Mobile About dengan tampilan yang diperbaiki - tanpa konflik */
 
 /* Reset specificity hanya untuk mobile */
@@ -142,11 +143,7 @@
         display: none !important;
     }
     
-    /* Hapus section title asli dan ganti dengan versi mobile */
-    body.mobile-view .section-title {
-        display: none !important;
-    }
-    
+   
     /* Education & Work Section - style baru dengan specificity tinggi */
     body.mobile-view .edu-work-section {
         padding: 20px 15px !important;

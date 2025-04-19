@@ -21,18 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('AOS library not found');
     }
 
-    // Animasi typed.js untuk judul - cukup sekali saja
+    // Animasi typed.js untuk judul - hanya typing sekali
     if (document.querySelector('.typing-title') && typeof Typed !== 'undefined') {
         var typed = new Typed('.typing-title', {
-            strings: ["Who is Ahmad Syarif Hidayatullah ?", "Who is Ahmad Syarif Hidayatullah "],
-            typeSpeed: 80,
-            backSpeed: 40,
-            loop: true,
-            backDelay: 3000
+            strings: ["Who is Ahmad Syarif Hidayatullah ?"],
+            typeSpeed: 80,          // Kecepatan typing
+            startDelay: 300,        // Delay sebelum mulai typing
+            showCursor: false,      // Sembunyikan kursor
+            loop: false,            // Tidak perlu loop
+            onComplete: function(self) {
+                // Teks tetap ada setelah selesai
+            }
         });
         console.log('Typed.js initialized');
     }
-
+    
     // Animasi smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -268,28 +271,7 @@ function setupMobileView() {
         }
     }
     
-    // Tambahkan tombol My Skill di bagian bawah jika belum ada
-    const eduWorkSection = document.querySelector('.edu-work-section');
-    if (eduWorkSection && !document.querySelector('.my-skill-button')) {
-        const mySkillButton = document.createElement('a');
-        mySkillButton.className = 'my-skill-button';
-        mySkillButton.href = '#skills';
-        mySkillButton.textContent = 'My Skill';
-        eduWorkSection.appendChild(mySkillButton);
-        console.log('My Skill button added');
-        
-        // Event listener untuk smooth scroll
-        mySkillButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            const skillsSection = document.querySelector('#skills');
-            if (skillsSection) {
-                skillsSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    }
-    
+
     // Style subsection titles sesuai mobile design
     const subsectionTitles = document.querySelectorAll('.subsection-title, .subsection-title1');
     subsectionTitles.forEach(title => {
