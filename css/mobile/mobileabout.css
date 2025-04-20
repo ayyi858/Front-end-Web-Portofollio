@@ -737,3 +737,144 @@ body.mobile-view .social-links {
     font-size: 28px !important;
     margin: 20px 0 30px 30px !important;
 }
+
+
+/* Perbaikan untuk memastikan mode mobile selalu diterapkan */
+
+/* Tambahkan !important lebih agresif */
+@media (max-width: 767px) {
+    /* Prioritaskan tampilan mobile */
+    body.mobile-view, html.force-mobile-view body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+        background-color: #001540 !important; /* Warna biru navy gelap */
+        color: white !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
+    
+    /* Force header desktop menjadi hilang */
+    body.mobile-view header.nav-container,
+    body.mobile-view header,
+    html.force-mobile-view body header.nav-container,
+    html.force-mobile-view body header {
+        display: none !important;
+    }
+    
+    /* Force tampilkan header mobile */
+    body.mobile-view .mobile-header,
+    html.force-mobile-view body .mobile-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 15px 20px !important;
+        background-color: #c1a71a !important; /* Warna emas */
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    /* Jika class force-mobile-view ditambahkan, pastikan elements lain sesuai */
+    html.force-mobile-view body footer {
+        display: none !important;
+    }
+    
+    html.force-mobile-view body .edu-card {
+        background-color: #132b65 !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        transform: none !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Fix untuk menghindari header double */
+    body.mobile-view .mobile-header:nth-child(n+2),
+    html.force-mobile-view body .mobile-header:nth-child(n+2) {
+        display: none !important;
+    }
+    
+    /* Pastikan animasi menu mobile berfungsi */
+    body.mobile-view .mobile-menu-overlay,
+    html.force-mobile-view body .mobile-menu-overlay {
+        transition: right 0.4s cubic-bezier(0.65, 0, 0.35, 1) !important;
+    }
+    
+    body.mobile-view .mobile-menu-overlay.active,
+    html.force-mobile-view body .mobile-menu-overlay.active {
+        right: 0 !important;
+    }
+}
+
+/* Perbaikan Tambahan untuk Menu Mobile */
+.mobile-header {
+    display: none; /* Default hidden until mobile detection */
+}
+
+.mobile-menu-overlay {
+    right: -100%; /* Ensure it's hidden by default */
+}
+
+/* Mengatasi masalah display none/block */
+@media (max-width: 767px) {
+    body.mobile-view .nav-container,
+    html.force-mobile-view body .nav-container {
+        display: none !important;
+    }
+
+    .mobile-header {
+        display: none; /* Tetap hidden sampai script menginisialisasi */
+    }
+    
+    body.mobile-view .mobile-header,
+    html.force-mobile-view body .mobile-header {
+        display: flex !important; /* Paksa tampil */
+    }
+}
+
+/* Fix untuk z-index */
+#particles-js {
+    z-index: -1 !important;
+}
+
+.mobile-header, 
+.mobile-menu-overlay,
+.menu-backdrop {
+    z-index: 9999 !important;
+}
+
+/* Force mobile styling untuk education cards */
+@media (max-width: 767px) {
+    body.mobile-view .education-grid,
+    html.force-mobile-view body .education-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    body.mobile-view .edu-card,
+    html.force-mobile-view body .edu-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    body.mobile-view .school-logo,
+    html.force-mobile-view body .school-logo {
+        width: 40px !important;
+        height: 40px !important;
+        margin-right: 15px !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+    }
+    
+    body.mobile-view .edu-content-wrapper,
+    html.force-mobile-view body .edu-content-wrapper {
+        flex: 1 !important;
+    }
+}
