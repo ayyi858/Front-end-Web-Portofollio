@@ -523,3 +523,39 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Script untuk menerapkan animasi pada mobile view
+document.addEventListener('DOMContentLoaded', function() {
+    // Periksa jika dalam mode mobile
+    const isMobile = window.innerWidth <= 767 || document.body.classList.contains('mobile-view');
+    
+    if (isMobile) {
+        console.log("Mode mobile terdeteksi, menerapkan animasi manual");
+        
+        // Sembunyikan semua elemen dulu
+        gsap.set('.profile-image-container', {opacity: 0, scale: 0.8});
+        gsap.set('.hello-box', {opacity: 0, x: -30});
+        gsap.set('.name-line', {opacity: 0, y: 20});
+        gsap.set('.title', {opacity: 0, y: 20});
+        gsap.set('.quote', {opacity: 0, y: 20});
+        gsap.set('.cta-buttons', {opacity: 0, y: 20});
+        gsap.set('.about-header', {opacity: 0, x: -30});
+        gsap.set('.about-heading', {opacity: 0, x: -30});
+        gsap.set('.about-text', {opacity: 0, y: 20});
+        gsap.set('.btn-outline', {opacity: 0, y: 20});
+        
+        // Buat timeline untuk animasi berurutan
+        const timeline = gsap.timeline({delay: 0.5});
+        
+        // Animasi masuk
+        timeline.to('.profile-image-container', {opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)"})
+                .to('.hello-box', {opacity: 1, x: 0, duration: 0.7, ease: "power2.out"}, "-=0.3")
+                .to('.name-line', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.3")
+                .to('.title', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.5")
+                .to('.quote', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.5")
+                .to('.cta-buttons', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.5")
+                .to('.about-header', {opacity: 1, x: 0, duration: 0.7, ease: "power2.out"}, "-=0.3")
+                .to('.about-heading', {opacity: 1, x: 0, duration: 0.7, ease: "power2.out"}, "-=0.5")
+                .to('.about-text', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.5")
+                .to('.btn-outline', {opacity: 1, y: 0, duration: 0.7, ease: "power2.out"}, "-=0.5");
+    }
+});
