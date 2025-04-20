@@ -618,3 +618,35 @@ body.mobile-view .social-links {
     margin-top: 15px;
     margin-left: 0; /* Pastikan tidak ada margin tambahan */
 }
+
+/* Penyeragaman ukuran elemen navigasi di halaman home */
+.mobile-menu-title {
+    font-size: 28px !important; /* Sesuaikan dengan ukuran di about */
+}
+
+.mobile-nav-links a {
+    font-size: 28px !important; /* Sesuaikan dengan ukuran di about */
+}
+
+.mobile-links-title {
+    font-size: 18px !important; /* Sesuaikan dengan ukuran di about */
+}
+
+.social-links a {
+    font-size: 16px !important; /* Sesuaikan dengan ukuran di about */
+}
+
+/* Untuk ukuran layar yang lebih kecil */
+@media (max-width: 360px) {
+    .mobile-nav-links a {
+        font-size: 24px !important;
+    }
+    
+    .mobile-menu-title {
+        font-size: 28px !important;
+    }
+    
+    .social-links a {
+        font-size: 14px !important;
+    }
+}
