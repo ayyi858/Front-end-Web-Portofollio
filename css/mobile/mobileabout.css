@@ -619,34 +619,121 @@ body.mobile-view .social-links {
     margin-left: 0; /* Pastikan tidak ada margin tambahan */
 }
 
-/* Penyeragaman ukuran elemen navigasi di halaman home */
+/* Penyeragaman navigasi mobile antara home dan about */
+
+/* Pastikan ukuran dan posisi yang sama */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100% !important;
+    height: 100%;
+    background-color: #c1a71a;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 0 0 0 !important;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Judul navigasi */
 .mobile-menu-title {
-    font-size: 28px !important; /* Sesuaikan dengan ukuran di about */
+    color: white;
+    font-size: 28px !important;
+    font-weight: 700;
+    margin: 20px 0 30px 30px !important;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+}
+
+/* Item menu navigasi */
+.mobile-nav-links {
+    list-style: none;
+    padding: 0 0 0 30px !important;
+    margin: 0;
+    margin-bottom: 30px !important;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 20px !important;
 }
 
 .mobile-nav-links a {
-    font-size: 28px !important; /* Sesuaikan dengan ukuran di about */
+    color: white;
+    text-decoration: none;
+    font-size: 28px !important;
+    font-weight: 600;
+    display: block;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Link hover & active */
+.mobile-nav-links a.active,
+.mobile-nav-links a:hover {
+    color: #091538 !important; 
+}
+
+/* Links section */
+.mobile-links-section {
+    margin-top: auto;
+    padding: 20px 0 30px 30px !important;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
 }
 
 .mobile-links-title {
-    font-size: 18px !important; /* Sesuaikan dengan ukuran di about */
+    color: white;
+    font-size: 18px !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+    margin-left: 0;
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px !important;
+    margin-left: 0;
 }
 
 .social-links a {
-    font-size: 16px !important; /* Sesuaikan dengan ukuran di about */
+    color: white;
+    text-decoration: none;
+    font-size: 16px !important;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
 }
 
-/* Untuk ukuran layar yang lebih kecil */
+/* Responsive untuk layar kecil */
 @media (max-width: 360px) {
     .mobile-nav-links a {
         font-size: 24px !important;
     }
     
     .mobile-menu-title {
-        font-size: 28px !important;
+        font-size: 22px !important;
     }
     
     .social-links a {
         font-size: 14px !important;
     }
+}
+
+/* Force specificity jika perlu */
+.mobile-menu-overlay.active .mobile-menu-title,
+.mobile-menu-overlay .mobile-menu-title {
+    font-size: 28px !important;
+    margin: 20px 0 30px 30px !important;
 }
