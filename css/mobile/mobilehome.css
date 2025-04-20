@@ -788,3 +788,41 @@ body.mobile-view .typed-cursor {
     background: transparent !important; 
 }
 
+/* Perbaikan keselarasan menu navigasi */
+.mobile-menu-title {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 20px 0 50px 30px; /* Ubah margin dari 20px 0 50px 20px menjadi 30px di kiri */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+    transition-delay: 0.05s;
+}
+
+/* Pastikan padding pada mobile-nav-links konsisten dengan title */
+.mobile-nav-links {
+    list-style: none;
+    padding: 0 0 0 30px; /* Padding kiri 30px, sama dengan margin kiri mobile-menu-title */
+    margin: 0;
+}
+
+/* Perbaikan untuk elemen Links juga */
+.mobile-links-title {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+    margin-left: 0; /* Pastikan tidak ada margin tambahan */
+}
+
+/* Perbaikan margin pada mobile-links-section */
+.mobile-links-section {
+    margin-top: auto;
+    padding: 20px 0 50px 30px; /* Ubah padding dari 20px 0 50px 30px ke 30px di kiri */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+    transition-delay: 0.4s;
+}

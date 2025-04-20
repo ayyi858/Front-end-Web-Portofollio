@@ -297,8 +297,10 @@ function setupMobileTyped() {
     }
 }
 
-// Fungsi untuk menampilkan menu mobile dengan animasi dari kanan ke kiri dengan efek lengkung
+// Fungsi untuk menampilkan menu mobile tanpa delay
 function showMobileMenu() {
+    console.log('showMobileMenu function called');
+    
     // Cek apakah menu backdrop sudah ada
     let menuBackdrop = document.querySelector('.menu-backdrop');
     if (!menuBackdrop) {
@@ -366,23 +368,21 @@ function showMobileMenu() {
     mobileMenu.classList.add('animation-curve');
     
     // Gunakan GSAP untuk animasi slide yang lebih cepat
-    gsap.fromTo(mobileMenu, 
-        { right: "-100%", display: "flex" },
-        { 
-            right: "0%", 
-            duration: 0.4,
-            ease: "power2.out",
-            onComplete: function() {
-                // Tambahkan kelas active untuk trigger animasi anak elemen
-                mobileMenu.classList.add('active');
-                
-                // Hapus efek lengkung setelah animasi masuk selesai
-                setTimeout(() => {
-                    mobileMenu.classList.remove('animation-curve');
-                }, 50);
-            }
+    gsap.set(mobileMenu, { right: "-100%", display: "flex" });
+    gsap.to(mobileMenu, { 
+        right: "0%", 
+        duration: 0.4,
+        ease: "power2.out",
+        onComplete: function() {
+            // Tambahkan kelas active untuk trigger animasi anak elemen
+            mobileMenu.classList.add('active');
+            
+            // Hapus efek lengkung setelah animasi masuk selesai
+            setTimeout(() => {
+                mobileMenu.classList.remove('animation-curve');
+            }, 50);
         }
-    );
+    });
 }
 
 // Fungsi untuk menyembunyikan menu mobile dengan animasi
@@ -410,23 +410,21 @@ function hideMobileMenu() {
             }, 200);
         }
         
-        // Beri sedikit delay sebelum animasi slide keluar
-        setTimeout(() => {
-            gsap.to(mobileMenu, {
-                right: "-100%",
-                duration: 0.3,
-                ease: "power2.in",
-                onComplete: function() {
-                    // Jika sudah di mode desktop, sembunyikan menu
-                    if (!document.body.classList.contains('mobile-view')) {
-                        mobileMenu.style.display = 'none';
-                    }
-                    
-                    // Hapus efek lengkung setelah animasi keluar selesai
-                    mobileMenu.classList.remove('animation-curve');
+        // Animasi slide keluar
+        gsap.to(mobileMenu, {
+            right: "-100%",
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: function() {
+                // Jika sudah di mode desktop, sembunyikan menu
+                if (!document.body.classList.contains('mobile-view')) {
+                    mobileMenu.style.display = 'none';
                 }
-            });
-        }, 100);
+                
+                // Hapus efek lengkung setelah animasi keluar selesai
+                mobileMenu.classList.remove('animation-curve');
+            }
+        });
     }
 }
 

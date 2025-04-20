@@ -570,3 +570,51 @@
         }
     }
 }
+
+/* Perbaikan keselarasan menu navigasi untuk halaman about */
+body.mobile-view .mobile-menu-title {
+    color: white;
+    font-size: 28px; 
+    font-weight: 700;
+    margin: 20px 0 30px 30px; /* Ubah margin dari 20px 0 30px 20px menjadi 30px di kiri */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+    transition-delay: 0.05s;
+}
+
+/* Pastikan padding pada mobile-nav-links konsisten dengan title */
+body.mobile-view .mobile-nav-links {
+    list-style: none;
+    padding: 0 0 0 30px; /* Padding kiri 30px, sama dengan margin kiri mobile-menu-title */
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+/* Perbaikan untuk elemen Links juga */
+body.mobile-view .mobile-links-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+    margin-left: 0; /* Pastikan tidak ada margin tambahan */
+}
+
+/* Perbaikan margin pada mobile-links-section */
+body.mobile-view .mobile-links-section {
+    margin-top: auto;
+    padding: 20px 0 30px 30px; /* Ubah padding dari 20px 0 30px 30px ke 30px di kiri */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+    transition-delay: 0.4s;
+}
+
+/* Perbaikan pada social-links */
+body.mobile-view .social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    margin-left: 0; /* Pastikan tidak ada margin tambahan */
+}
