@@ -1,0 +1,690 @@
+/* Mobile Layout Styles - FINAL Version */
+:root {
+    --primary-color: #091538; /* Biru navy gelap */
+    --accent-color: #c1a71a; /* Warna emas */
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --dark-gray: #333333;
+    --border-radius: 30px;
+}
+
+/* Fix untuk overflow pada transisi */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Mobile view aktivasi */
+body.mobile-view header,
+body.mobile-view .hero {
+    display: none !important;
+}
+
+body:not(.mobile-view) .mobile-header,
+body:not(.mobile-view) .page-title {
+    display: none !important;
+}
+
+body:not(.mobile-view) .mobile-menu-overlay,
+body:not(.mobile-view) .menu-backdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Pastikan navigasi desktop tampil dengan benar */
+body:not(.mobile-view) header {
+    display: block !important;
+}
+
+body:not(.mobile-view) .hero {
+    display: block !important;
+}
+
+/* Fix untuk particles background aktif di desktop dan mobile */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block !important; /* Selalu tampilkan background particles */
+}
+
+/* Mobile Header styling */
+.mobile-header {
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+/* Sembunyikan header mobile saat menu terbuka */
+body.menu-open .mobile-header {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mobile-header .logo {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.mobile-header .logo img {
+    height: 30px;
+}
+
+.mobile-header .logo-text {
+    color: white;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover span {
+    width: 90%;
+}
+
+.menu-toggle:hover span:nth-child(2) {
+    width: 70%;
+}
+
+/* Title header */
+.page-title {
+    margin-top: 60px;
+    background-color: var(--accent-color);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.page-title h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Contact section styling */
+.contact-section {
+    position: relative;
+    padding-top: 70px; /* Added to ensure content appears below fixed header */
+    z-index: 1;
+}
+
+/* Main content styling */
+.container {
+    padding: 0 20px;
+}
+
+/* GitHub section */
+.github-section {
+    margin: 30px 0;
+    position: relative;
+}
+
+.github-section h3 {
+    background-color: var(--accent-color);
+    color: white;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* GitHub card scrolling horizontal */
+.github-card {
+    background-color: white;
+    color: #333;
+    border-radius: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.github-card::-webkit-scrollbar {
+    display: none;
+}
+
+.github-profile {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+    white-space: normal;
+}
+
+.github-profile .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    object-fit: cover;
+    margin: 0 auto 10px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+.username {
+    color: #0366d6;
+    font-weight: bold;
+    background-color: #e6f0ff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.online-dots {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 5px;
+}
+
+.online-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.github-contributions {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    min-width: 800px;
+    padding: 20px;
+    text-align: left;
+    border-top: 1px solid #eee;
+}
+
+/* Mobile Menu Overlay - Dengan animasi slide dari kanan ke kiri dan ujung melengkung setengah lingkaran */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Mulai dari luar layar kanan */
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    z-index: 9999; /* Z-index tinggi */
+    display: flex;
+    flex-direction: column;
+    padding: 60px 0 0 0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), right 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Kelas aktif untuk menu overlay */
+.mobile-menu-overlay.active {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Bentuk lengkung untuk overlay menu - setengah lingkaran di kiri */
+.mobile-menu-overlay::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    width: 50px;
+    height: 100px;
+    background: var(--accent-color);
+    border-radius: 50px 0 0 50px;
+    transform: translateY(-50%);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu Header - Di dalam overlay menu */
+.mobile-menu-header {
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Posisi awal dari luar layar, sama dengan menu */
+    width: 100%;
+    z-index: 10000; /* Z-index lebih tinggi dari menu content */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: right 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Animasi yang sama dengan menu */
+}
+
+/* Header mengikuti menu saat aktif */
+.mobile-menu-overlay.active .mobile-menu-header {
+    right: 0;
+}
+
+/* Menu Item dengan animasi slide dari kanan */
+.mobile-nav-links {
+    list-style: none;
+    padding: 0 0 0 30px;
+    margin: 0;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: calc(0.1s * var(--item-index, 0));
+}
+
+.mobile-menu-overlay.active .mobile-nav-links li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 38px;
+    font-weight: 600;
+    display: block;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Perbaikan untuk warna menu aktif - pastikan selalu putih */
+.mobile-nav-links a.active {
+    color: var(--white) !important; /* Menggunakan !important untuk override styling lain */
+}
+
+.mobile-nav-links a.active:hover {
+    color: var(--white) !important;
+}
+
+/* Pastikan hover effect tidak mengubah warna menu aktif */
+.mobile-nav-links a.active::after {
+    width: 50px; /* Garis bawah selalu terlihat untuk menu aktif */
+    background-color: var(--white); /* Warna garis putih, bukan primary-color */
+}
+
+/* Efek hover untuk link non-aktif tetap sama */
+.mobile-nav-links a:not(.active):hover {
+    color: var(--primary-color);
+}
+
+.mobile-nav-links a:not(.active):hover::after {
+    width: 50px;
+    background-color: var(--primary-color);
+}
+
+.mobile-nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.mobile-nav-links a:hover::after {
+    width: 50px;
+}
+
+/* Animasi untuk judul menu */
+.mobile-menu-title {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 20px 0 50px 30px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: 0.05s;
+}
+
+.mobile-menu-overlay.active .mobile-menu-title {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animasi untuk links section */
+.mobile-links-section {
+    margin-top: auto;
+    padding: 20px 0 50px 30px;
+    opacity: 0;
+    transform: translateX(20px); /* Dari kanan ke kiri */
+    transition: all 0.4s ease;
+    transition-delay: 0.4s;
+}
+
+.mobile-menu-overlay.active .mobile-links-section {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-links-title {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.mobile-links-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0; /* Dimulai dengan width 0 */
+    height: 1px;
+    background-color: var(--white);
+    transition: width 0.6s ease;
+    transition-delay: 0.6s;
+}
+
+.mobile-menu-overlay.active .mobile-links-title::after {
+    width: 100%;
+}
+
+/* Tombol close dengan hover effect */
+.menu-close {
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.x-icon {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    transition: transform 0.3s ease;
+}
+
+/* Sosial links animasi */
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.active .social-links a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(1) {
+    transition-delay: 0.5s;
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(2) {
+    transition-delay: 0.6s;
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(3) {
+    transition-delay: 0.7s;
+}
+
+.mobile-menu-overlay.active .social-links a:nth-child(4) {
+    transition-delay: 0.8s;
+}
+
+/* Animation curve */
+.mobile-menu-overlay.animation-curve {
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+/* Scroll indicator for GitHub card */
+.scroll-indicator {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    font-size: 20px;
+    opacity: 0.7;
+    animation: pulseRight 1.5s infinite ease-in-out;
+    z-index: 2;
+}
+
+@keyframes pulseRight {
+    0% { transform: translateY(-50%) translateX(0); opacity: 0.7; }
+    50% { transform: translateY(-50%) translateX(5px); opacity: 1; }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0.7; }
+}
+
+/* Contact form styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent-color);
+}
+
+.send-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.send-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 767px) {
+    body {
+        background-color: var(--primary-color);
+    }
+    
+    /* Fix untuk viewport pada mobile */
+    html, body {
+        height: 100%;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    
+    /* Pastikan konten contact section muncul di bawah header mobile */
+    .contact-section {
+        padding-top: 70px;
+    }
+    
+    /* Perbaikan styling untuk contact section */
+    .contact-form-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-nav-links a {
+        font-size: 28px;
+    }
+    
+    .mobile-nav-links li {
+        margin-bottom: 18px;
+    }
+    
+    .mobile-menu-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .github-section h3 {
+        font-size: 14px;
+    }
+}
+
+/* Fix untuk iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu-overlay,
+    .menu-backdrop {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    html, body {
+        height: -webkit-fill-available;
+    }
+    
+    .mobile-container {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Pastikan particles-js selalu terlihat tidak peduli apa */
+#particles-js {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important;
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+}
+
+/* Pastikan canvas dalam particles-js juga selalu terlihat */
+#particles-js canvas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix untuk z-index ketika berada di mobile view */
+body.mobile-view .contact-section {
+    position: relative;
+    z-index: 0;
+    background: transparent !important;
+}
+
+/* Perbaikan khusus untuk GitHub card di mobile */
+@media (max-width: 767px) {
+    .github-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+    }
+    
+    .github-card::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .scroll-indicator {
+        display: block;
+        opacity: 0.7;
+        z-index: 10;
+    }
+}
+
+/* Tambahkan kode ini di mobilecontact.css */
+
+/* Override semua warna untuk menu aktif secara lebih ketat */
+.mobile-nav-links a.active,
+.mobile-menu-overlay .mobile-nav-links a.active {
+    color: var(--white) !important;
+    border-color: var(--white) !important;
+}
+
+/* Pastikan juga ketika overlay aktif */
+.mobile-menu-overlay.active .mobile-nav-links a.active {
+    color: var(--white) !important;
+}
+
+/* Garis bawah menu aktif */
+.mobile-nav-links a.active::after,
+.mobile-menu-overlay .mobile-nav-links a.active::after,
+.mobile-menu-overlay.active .mobile-nav-links a.active::after {
+    width: 50px !important;
+    background-color: var(--white) !important;
+}
+
+/* Override untuk hover state */
+.mobile-nav-links a.active:hover,
+.mobile-menu-overlay .mobile-nav-links a.active:hover,
+.mobile-menu-overlay.active .mobile-nav-links a.active:hover {
+    color: var(--white) !important;
+}
