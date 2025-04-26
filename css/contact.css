@@ -110,12 +110,12 @@ nav ul li a.active {
 
 /* Hero Section - Disesuaikan dengan about.html */
 .hero {
-    background-color: #a38808; /* Warna kuning keemasan */
+    background-color: rgba(193, 167, 26, 0.7); /* 0.7 adalah tingkat transparansi (1 = solid, 0 = transparan) */
     text-align: center;
     padding: 20px 0;
-    margin-bottom: 40px;
     position: relative;
     z-index: 1;
+    margin-bottom: 10px;
 }
 
 .hero h1 {
