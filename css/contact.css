@@ -1178,3 +1178,80 @@ footer {
         padding-top: 20px;
     }
 }
+
+/* Tambahkan di desktop-fixes.css */
+
+/* Animasi untuk GitHub card masuk */
+.github-card {
+    animation: fadeSlideUp 0.8s ease-out forwards;
+  }
+  
+  .github-profile {
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+  
+  .contribution-grid {
+    animation: fadeIn 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+  
+  .contribution-row td {
+    opacity: 0;
+    animation-name: cellFadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Delay animasi baris per baris */
+  .contribution-row:nth-child(1) td {
+    animation-delay: calc(0.8s + var(--cell-index, 0) * 0.01s);
+  }
+  
+  .contribution-row:nth-child(2) td {
+    animation-delay: calc(1.0s + var(--cell-index, 0) * 0.01s);
+  }
+  
+  .contribution-row:nth-child(3) td {
+    animation-delay: calc(1.2s + var(--cell-index, 0) * 0.01s);
+  }
+  
+  @keyframes fadeSlideUp {
+    0% { 
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes cellFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: scale(0.5);
+    }
+    100% { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Pastikan animasi tidak mengganggu kemampuan scroll */
+  @media (max-width: 767px) {
+    .github-card {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .contribution-grid {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+  }
