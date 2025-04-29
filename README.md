@@ -19,6 +19,16 @@
 
 Selamat datang di repository portfolio profesional saya. Website ini dibangun untuk menjadi showcase bagi proyek-proyek terbaik saya dalam bidang desain grafis, video editing, dan pengembangan web. Dengan filosofi desain yang menggabungkan estetika modern dan fungsionalitas, portfolio ini dirancang untuk memberikan pengalaman pengguna yang optimal di semua perangkat.
 
+## 📱 Preview Mobile & Desktop
+
+
+   ![screencapture-web-portofollio-ayproductions-vercel-app-index-html-2025-04-26-22_16_43](https://github.com/user-attachments/assets/aefc4d02-d5c3-406f-b6bf-1f62b86993f2)
+![screencapture-web-portofollio-ayproductions-vercel-app-about-html-2025-04-26-22_20_22](https://github.com/user-attachments/assets/bcd06b69-5987-4a2e-9dd5-64aa3af0fe5f)
+![screencapture-web-portofollio-ayproductions-vercel-app-porto-html-2025-04-26-22_22_39](https://github.com/user-attachments/assets/66708c51-b430-45b0-b413-721d3c9b126e)
+
+  
+</div>
+
 ### ⚡ Keunggulan Website
 
 * **Performa Tinggi** - Dioptimalkan untuk load time yang cepat dan transisi halaman yang mulus
@@ -160,14 +170,6 @@ portfolio-website/
 - **Thank You Page** - Halaman konfirmasi setelah pengiriman form
 
 ---
-
-## 📱 Preview Mobile & Desktop
-
-<div align="center">
-  <img src="https://via.placeholder.com/300x600/091538/c1a71a?text=Mobile+View" alt="Mobile Preview" width="200" style="border-radius: 10px;"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://via.placeholder.com/800x400/091538/c1a71a?text=Desktop+View" alt="Desktop Preview" width="600" style="border-radius: 10px;"/>
-</div>
 
 ---
 
