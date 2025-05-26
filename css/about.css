@@ -97,7 +97,7 @@ nav ul li a.active {
 
 /* Hero Section */
 .hero {
-    background-color: rgba(193, 167, 26, 0.6); /* 0.7 adalah tingkat transparansi (1 = solid, 0 = transparan) */
+    background-color: rgba(193, 167, 26, 0.6); 
     text-align: center;
     padding: 20px 0;
     position: relative;
