@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Waduh!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #091538;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #c1a71a;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 8s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        .error-code {
+            font-size: 180px;
+            font-weight: 700;
+            color: #c1a71a;
+            text-shadow: 0 0 50px rgba(193, 167, 26, 0.5);
+            animation: glitch 3s infinite;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        .emoji {
+            font-size: 120px;
+            animation: spin 4s ease-in-out infinite;
+            display: inline-block;
+            margin: 30px 0;
+        }
+
+        @keyframes spin {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(20deg); }
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 30px 0;
+            font-weight: 400;
+        }
+
+        .status {
+            display: inline-block;
+            border: 2px solid #c1a71a;
+            padding: 15px 40px;
+            margin: 30px 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #c1a71a;
+            position: relative;
+            background: rgba(193, 167, 26, 0.05);
+        }
+
+        .corner {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 2px solid #c1a71a;
+            background-color: #091538;
+        }
+
+        .corner-tl { top: -5px; left: -5px; }
+        .corner-tr { top: -5px; right: -5px; }
+        .corner-bl { bottom: -5px; left: -5px; }
+        .corner-br { bottom: -5px; right: -5px; }
+
+        .btn {
+            display: inline-block;
+            background-color: #c1a71a;
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(193, 167, 26, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(193, 167, 26, 0.6);
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 40px auto 20px;
+            overflow: hidden;
+            border: 1px solid rgba(193, 167, 26, 0.3);
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #c1a71a, #d4b82d);
+            animation: loading 2.5s infinite;
+            box-shadow: 0 0 15px rgba(193, 167, 26, 0.7);
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 80%; }
+            100% { width: 0%; }
+        }
+
+        .timer {
+            font-size: 16px;
+            color: #c1a71a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 120px;
+            }
+            
+            .emoji {
+                font-size: 80px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .status {
+                font-size: 18px;
+                padding: 12px 30px;
+            }
+
+            .btn {
+                padding: 15px 40px;
+                font-size: 16px;
+            }
+
+            .loading-bar {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 90px;
+            }
+
+            .emoji {
+                font-size: 60px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .status {
+                font-size: 16px;
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="emoji">🛠️</div>
+        <h1>Lagi Ganti Oli!</h1>
+        
+        <div class="status">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            <span id="status-text">Masih Dibenerin...</span>
+        </div>
+
+        <p class="subtitle">Developer lagi debugging sambil ngopi ☕</p>
+
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="timer" id="timer">Selesai: Entahlah 🤷‍♂️</div>
+
+        <a href="" class="btn">Balik Dulu</a>
+    </div>
+
+    <script>
+        // Create particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            document.body.appendChild(particle);
+        }
+
+        // Status messages
+        const statuses = [
+            "Masih Dibenerin...",
+            "Hampir Jadi... Kayaknya",
+            "99% Loading...",
+            "Tunggu Bentar Ya",
+            "Lagi Restart Server"
+        ];
+
+        // Timer messages
+        const timers = [
+            "Selesai: Entahlah 🤷‍♂️",
+            "Selesai: 5 Menit Lagi (Sejak Kemarin)",
+            "Selesai: Habis Kopi ☕",
+            "Selesai: Segera™",
+            "Selesai: Besok Pagi (Mungkin)"
+        ];
+
+        let idx = 0;
+        setInterval(() => {
+            idx = (idx + 1) % statuses.length;
+            document.getElementById('status-text').textContent = statuses[idx];
+            document.getElementById('timer').textContent = timers[idx];
+        }, 2500);
+    </script>
+</body>
+</html>
